@@ -20,8 +20,6 @@
 
 ## 📂 项目目录规范
 
-请确保您提交到 GitHub 或发布到 Packagist 的代码物理结构对齐如下：
-
 ```text
 isas-php-sdk/
 ├── src/                      # 核心源码目录 (符合 PSR-4 自动加载标准)
