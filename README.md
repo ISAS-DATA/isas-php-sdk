@@ -5,7 +5,7 @@
 [![License](https://img.shields.io/packagist/l/isas/php-sdk.svg?style=flat-square)](https://packagist.org/packages/isas/php-sdk)
 [![PHP Version Require](https://img.shields.io/packagist/php-v/isas/php-sdk.svg?style=flat-square)](https://packagist.org/packages/isas/php-sdk)
 
-欢迎使用 ISAS起零数据（[https://api.istero.com](https://api.istero.com)）官方 PHP SDK。本 SDK 采用现代化设计模式，专为多语言矩阵生态设计，具备高性能、**零命名空间污染（零 `use` 膨胀）** 及强类型依赖特征，适用于： Laravel / ThinkPHP 6.x 8.x / Hyperf / Symfony / Yii2 / Slim / CodeIgniter4 等主流 PHP 框架及原生 PHP 项目。
+欢迎使用 ISAS起零数据（[https://api.istero.com](https://api.istero.com)）官方 PHP SDK。本 SDK 采用现代化设计模式，专为多语言矩阵生态设计，具备高性能、**零命名空间污染** 及强类型依赖特征，适用于： Laravel / ThinkPHP 6.x 8.x / Hyperf / Symfony / Yii2 / Slim / CodeIgniter4 等主流 PHP 框架及原生 PHP 项目。
 
 ---
 
