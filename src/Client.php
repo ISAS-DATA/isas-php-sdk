@@ -118,17 +118,17 @@ class Client
         $result = json_decode($response, true);
 
         // 如果不是 200 响应，直接视为服务调用异常
-        if ($httpCode !== 200) {
-            $errorMsg = isset($result['message']) ? $result['message'] : '未知服务错误';
-            $errorCode = isset($result['code']) ? $result['code'] : $httpCode;
-
-            throw new ServiceException(
-                "ISAS 服务调用异常 (HTTP {$httpCode}): {$errorMsg}",
-                $errorCode,
-                $httpCode,
-                $response
-            );
-        }
+//        if ($httpCode !== 200) {
+//            $errorMsg = isset($result['message']) ? $result['message'] : '未知服务错误';
+//            $errorCode = isset($result['code']) ? $result['code'] : $httpCode;
+//
+//            throw new ServiceException(
+//                "ISAS 服务调用异常 (HTTP {$httpCode}): {$errorMsg}",
+//                $errorCode,
+//                $httpCode,
+//                $response
+//            );
+//        }
 
         // 拦截 C：返回的虽然是 200，但业务 JSON 无法解析（服务链路异常导致吐出 HTML 报错页等）
         if ($result === null && json_last_error() !== JSON_ERROR_NONE) {
