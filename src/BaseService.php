@@ -12,7 +12,7 @@ namespace Isas\Sdk;
  * @link https://github.com/ISAS-DATA/isas-php-sdk
  *
  * @create 2025-05-26
- * @update 2025-05-26
+ * @update 2025-05-31
  */
 
 abstract class BaseService

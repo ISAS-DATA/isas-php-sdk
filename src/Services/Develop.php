@@ -827,8 +827,7 @@ class Develop extends BaseService
     {
         $path = '/resource/v1/visitor/information';
         // 无业务入参，$params 留空
-        $params = [];
-        return $this->client->execute('POST', $path, $params);
+        return $this->client->execute('POST', $path);
     }
 }
 

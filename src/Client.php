@@ -4,7 +4,7 @@
  *
  * @package isas-php-sdk
  * @author VernonShao
- * @version 1.1.0
+ * @version 1.0.3
  * @copyright © 2024-2026 ISAS-DATA
  * @license MIT License
  *
@@ -21,7 +21,6 @@ class Client
 {
     private $token;
     private $appSecret;
-    private $baseUrl;
 
     public function __construct(string $token = '', string $appSecret = '')
     {
@@ -32,7 +31,6 @@ class Client
 
         $this->token = $token;
         $this->appSecret = $appSecret;
-        $this->baseUrl = "https://api.istero.com";
     }
 
     /**
@@ -47,7 +45,7 @@ class Client
     public function execute($method, $path, array $bizParams = [])
     {
         $method = strtoupper($method);
-        $url = $this->baseUrl . '/' . ltrim($path, '/');
+        $url = "https://api.istero.com/" . ltrim($path, '/');
         $timestamp = time();
         $nonce = substr(uniqid(mt_rand(), true), 0, 16);
 
@@ -114,21 +112,26 @@ class Client
             curl_close($ch);
         }
 
-        // 拦截 B：HTTP 状态码及响应内容解析
-        $result = json_decode($response, true);
+        //判断返回是否为json格式，部分接口，如二维码生成支持直接输出二进制原始数据
+        if ($this->isStandardJson($response)) {
+            // 拦截 B：HTTP 状态码及响应内容解析
+            $result = json_decode($response, true);
+        } else {
+            $result = $response;
+        }
 
         // 如果不是 200 响应，直接视为服务调用异常
-        if ($httpCode !== 200) {
-            $errorMsg = isset($result['message']) ? $result['message'] : '未知服务错误';
-            $errorCode = isset($result['code']) ? $result['code'] : $httpCode;
-
-            throw new ServiceException(
-                "ISAS 服务调用异常 (HTTP {$httpCode}): {$errorMsg}",
-                $errorCode,
-                $httpCode,
-                $response
-            );
-        }
+//        if ($httpCode !== 200) {
+//            $errorMsg = isset($result['message']) ? $result['message'] : '未知服务错误';
+//            $errorCode = isset($result['code']) ? $result['code'] : $httpCode;
+//
+//            throw new ServiceException(
+//                "ISAS 服务调用异常 (HTTP {$httpCode}): {$errorMsg}",
+//                $errorCode,
+//                $httpCode,
+//                $response
+//            );
+//        }
 
         // 拦截 C：返回的虽然是 200，但业务 JSON 无法解析（服务链路异常导致吐出 HTML 报错页等）
         if ($result === null && json_last_error() !== JSON_ERROR_NONE) {
@@ -154,5 +157,12 @@ class Client
         throw new \BadMethodCallException("ISAS SDK 暂不支持该子服务组件: {$name}");
     }
 
-
+    public function isStandardJson(string $str): bool
+    {
+        if (!is_string($str) || trim($str) === '') {
+            return false;
+        }
+        $data = json_decode($str);
+        return json_last_error() === JSON_ERROR_NONE && ($data !== null || $str === 'null');
+    }
 }
