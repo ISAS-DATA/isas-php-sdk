@@ -826,7 +826,28 @@ class Develop extends BaseService
     public function visitorInfoChecker()
     {
         $path = '/resource/v1/visitor/information';
-        // 无业务入参，$params 留空
+        return $this->client->execute('POST', $path);
+    }
+
+    /**
+     * https://api.istero.com/service/doc/packagist-package-search
+     * Packagist软件包搜索（官方版）
+     * @return array API 返回的 JSON 数组
+     */
+    public function packagistSearch()
+    {
+        $path = '/resource/v1/packagist/search';
+        return $this->client->execute('POST', $path);
+    }
+
+    /**
+     * https://api.istero.com/service/doc/isas-packagist-search
+     * Packagist软件包搜索（镜像版）
+     * @return array API 返回的 JSON 数组
+     */
+    public function IsasPackagistSearch()
+    {
+        $path = '/resource/v1/packagist/isas/search';
         return $this->client->execute('POST', $path);
     }
 }
