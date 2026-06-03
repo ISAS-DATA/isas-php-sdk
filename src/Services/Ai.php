@@ -219,7 +219,7 @@ class Ai extends BaseService
      * @param string $text 对话内容（必填，150个tokens）
      * @return array API 返回的 JSON 数组
      */
-    public function tongyiQwen25_32b($text)
+    public function tongyiQwen37_plus($text)
     {
         $path = '/resource/v1/ai/tongyi/conversation';
         $params = [
