@@ -28,12 +28,23 @@ class Tools extends BaseService
     /**
      * https://api.istero.com/service/doc/bing-daily-photo
      * Bing每日壁纸
+     * @param string $action 可选值：“rand ”为随机
+     * @param string $day 获取几天前的图片，与rand任选其一
+     * @param string $type 输出类型。json：输出json，image:直接输出图片
+     * @param string $device 输出设备：pc：pc端壁纸 mobile：移动端壁纸
      * @return array API 返回的 JSON 数组
      */
-    public function bingDailyPhoto()
+    public function bingDailyPhoto($action, $day, $type, $device = "pc")
     {
+        $params = [
+            'action' => (string)$action,
+            'day' => (int)$day,
+            'type' => (string)$type,
+            'device' => (string)$device,
+
+        ];
         $path = '/resource/v1/bing/wallpaper';
-        return $this->client->execute('POST', $path);
+        return $this->client->execute('POST', $path, $params);
     }
 
 
@@ -2425,5 +2436,16 @@ class Tools extends BaseService
             'text' => (string)$text
         ];
         return $this->client->execute('POST', $path, $params);
+    }
+
+    /**
+     * https://api.istero.com/service/doc/missing-child-find-api
+     * 宝贝回家公益服务
+     * @return array API 返回的 JSON 数组
+     */
+    public function babyComeHome()
+    {
+        $path = '/resource/v1/baby/come/home';
+        return $this->client->execute('POST', $path);
     }
 }
