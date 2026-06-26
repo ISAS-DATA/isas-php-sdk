@@ -2448,4 +2448,21 @@ class Tools extends BaseService
         $path = '/resource/v1/baby/come/home';
         return $this->client->execute('POST', $path);
     }
+
+    /**
+     * https://api.istero.com/service/doc/website-screenshot
+     * 网页截图，传入目标URL返回截图图片
+     * @param string $url 要截图的网页完整地址，需带 http(s)://（必填）
+     * @return array API 返回的 JSON 数组
+     */
+    public function websiteScreenshot($url)
+    {
+        $path = '/resource/v1/website/screenshot';
+        $params = [
+            'url' => (string)$url
+        ];
+        return $this->client->execute('POST', $path, $params);
+    }
+
+
 }
