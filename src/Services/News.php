@@ -7,6 +7,7 @@
  * @license MIT License
  * @link https://github.com/ISAS-DATA/isas-php-sdk
  */
+
 namespace Isas\Sdk\Services;
 
 use Isas\Sdk\BaseService;
@@ -145,4 +146,17 @@ class News extends BaseService
         $path = '/resource/v1/nanfang/news';
         return $this->client->execute('POST', $path);
     }
+
+    /**
+     * https://api.istero.com/service/doc/daily-world-news-briefing
+     * 60S读世界 每日精选国内外热点新闻简报与微语
+     * @return array API 返回的 JSON 数组
+     */
+    public function dailyWorld60s()
+    {
+        $path = '/resource/v1/60s/read/world';
+        return $this->client->execute('POST', $path);
+    }
+
+
 }

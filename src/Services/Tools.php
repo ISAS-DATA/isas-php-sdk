@@ -2464,5 +2464,38 @@ class Tools extends BaseService
         return $this->client->execute('POST', $path, $params);
     }
 
+    /**
+     * https://api.istero.com/service/doc/kfc-crazy-thursday-text
+     * KFC疯狂星期四文案，随机获取趣味段子文案
+     * @return array API 返回的 JSON 数组
+     */
+    public function kfcCrazyThursdayText()
+    {
+        $path = '/resource/v1/kfc/word';
+        return $this->client->execute('POST', $path);
+    }
+
+    /**
+     * https://api.istero.com/service/doc/global-movie-box-office-rank-api
+     * 猫眼电影全球影视票房榜，获取全球电影实时票房排行数据
+     * @return array API 返回的 JSON 数组
+     */
+    public function globalMovieBoxOfficeRank()
+    {
+        $path = '/resource/v1/world/movie/top';
+        return $this->client->execute('POST', $path);
+    }
+
+
+    /**
+     * https://api.istero.com/service/doc/singduck-random-song
+     * 唱鸭随机点歌服务，随机返回歌曲、歌词与播放链接
+     * @return array API 返回的 JSON 数组
+     */
+    public function singduckRandomSong()
+    {
+        $path = '/resource/v1/sing/duck/music';
+        return $this->client->execute('POST', $path);
+    }
 
 }
