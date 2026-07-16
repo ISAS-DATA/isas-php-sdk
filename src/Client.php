@@ -42,7 +42,7 @@ class Client
      * * @throws NetworkException 当底层网络通讯失败时抛出
      * @throws ServiceException 当后端服务返回非 200 状态码或业务逻辑错误时抛出
      */
-    public function execute($method, $path, array $bizParams = [])
+    public function execute($method, $path, array $bizParams = []): array
     {
         $method = strtoupper($method);
         $url = "https://api.istero.com/" . ltrim($path, '/');

@@ -20,11 +20,11 @@ class Web extends BaseService
      * @param string $url 待检测的网站地址（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function gzipCheck($url)
+    public function gzipCheck(string $url): array
     {
         $path = '/resource/v1/gzip/check';
         $params = [
-            'url' => (string)$url
+            'url' => $url
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -35,11 +35,11 @@ class Web extends BaseService
      * @param string $url 目标网站地址（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function faviconExtractor($url)
+    public function faviconExtractor(string $url): array
     {
         $path = '/resource/v1/get/favicon';
         $params = [
-            'url' => (string)$url
+            'url' => $url
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -50,11 +50,11 @@ class Web extends BaseService
      * @param string $url 目标网址（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function httpResponseChecker($url)
+    public function httpResponseChecker(string $url): array
     {
         $path = '/resource/v1/get/http/information';
         $params = [
-            'url' => (string)$url
+            'url' => $url
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -65,11 +65,11 @@ class Web extends BaseService
      * @param string $domain 域名（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function sslCertChecker($domain)
+    public function sslCertChecker(string $domain): array
     {
         $path = '/resource/v1/ssl/verification';
         $params = [
-            'domain' => (string)$domain
+            'domain' => $domain
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -80,11 +80,11 @@ class Web extends BaseService
      * @param string $domain 待查询域名（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function policeRecordChecker($domain)
+    public function policeRecordChecker(string $domain): array
     {
         $path = '/resource/v1/police/icp/query';
         $params = [
-            'domain' => (string)$domain
+            'domain' => $domain
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -97,11 +97,11 @@ class Web extends BaseService
      * @param string $domain 查询的域名
      * @return array API 返回的 JSON 数组
      */
-    public function icpRecordCheck($domain)
+    public function icpRecordCheck(string $domain): array
     {
         $path = '/resource/v2/icp/query';
         $params = [
-            'domain' => (string)$domain
+            'domain' => $domain
         ];
 
         return $this->client->execute('POST', $path, $params);
@@ -114,11 +114,11 @@ class Web extends BaseService
      * @param string $url 目标网页地址（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function webpageImageExtractor($url)
+    public function webpageImageExtractor(string $url): array
     {
         $path = '/resource/v1/get/web/all/images';
         $params = [
-            'url' => (string)$url
+            'url' => $url
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -129,11 +129,11 @@ class Web extends BaseService
      * @param string $url 目标网页地址（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function webpageUrlExtractor($url)
+    public function webpageUrlExtractor(string $url): array
     {
         $path = '/resource/v1/get/web/all/url';
         $params = [
-            'url' => (string)$url
+            'url' => $url
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -144,11 +144,11 @@ class Web extends BaseService
      * @param string $url 目标网址（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function websiteInfoChecker($url)
+    public function websiteInfoChecker(string $url): array
     {
         $path = '/resource/v1/website/info';
         $params = [
-            'url' => (string)$url
+            'url' => $url
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -159,11 +159,11 @@ class Web extends BaseService
      * @param string $domain 顶级域名
      * @return array API 返回的 JSON 数组
      */
-    public function whoisChecker($domain)
+    public function whoisChecker(string $domain): array
     {
         $path = '/resource/v1/whois/query';
         $params = [
-            'domain' => (string)$domain
+            'domain' => $domain
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -174,7 +174,7 @@ class Web extends BaseService
      * @param string $domain 待查询域名地址
      * @return array API 返回的 JSON 数组
      */
-    public function whoisV2(string $domain)
+    public function whoisV2(string $domain): array
     {
         $path = '/resource/v2/whois/query';
         $params = [
@@ -190,12 +190,12 @@ class Web extends BaseService
      * @param string|null $keyword 后缀关键字（可选，如com）
      * @return array API 返回的 JSON 数组
      */
-    public function domainSuffixes($keyword = null)
+    public function domainSuffixes(string $keyword = null): array
     {
         $path = '/resource/v1/get/domain/can_reg/list';
         $params = [];
         if ($keyword !== null) {
-            $params['keyword'] = (string)$keyword;
+            $params['keyword'] = $keyword;
         }
         return $this->client->execute('POST', $path, $params);
     }
@@ -208,13 +208,13 @@ class Web extends BaseService
      * @param string $operation 操作类型（必填，new=注册、renew=续费、transfer=转入）
      * @return array API 返回的 JSON 数组
      */
-    public function tencentDomainPrice($tld, $year, $operation)
+    public function tencentDomainPrice(string $tld, int $year, string $operation): array
     {
         $path = '/resource/v1/domain/price';
         $params = [
-            'tld' => (string)$tld,
-            'year' => (int)$year,
-            'operation' => (string)$operation
+            'tld' => $tld,
+            'year' => $year,
+            'operation' => $operation
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -225,11 +225,11 @@ class Web extends BaseService
      * @param string $domain 域名（必填，如example.com）
      * @return array API 返回的 JSON 数组
      */
-    public function domainRegistrationCheck($domain)
+    public function domainRegistrationCheck(string $domain): array
     {
         $path = '/resource/v1/domain/reg/status';
         $params = [
-            'domain' => (string)$domain
+            'domain' => $domain
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -240,11 +240,11 @@ class Web extends BaseService
      * @param string $url 待还原的短链接（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function urlUnshortener($url)
+    public function urlUnshortener(string $url): array
     {
         $path = '/resource/v1/url/reduction';
         $params = [
-            'url' => (string)$url
+            'url' => $url
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -255,11 +255,11 @@ class Web extends BaseService
      * @param string $url 待缩短的网址（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function xiarouUrlShortener($url)
+    public function xiarouUrlShortener(string $url): array
     {
         $path = '/resource/v1/xiarou/url/zip';
         $params = [
-            'url' => (string)$url
+            'url' => $url
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -270,11 +270,11 @@ class Web extends BaseService
      * @param string $url 待查询的网址（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function cdnInfoChecker($url)
+    public function cdnInfoChecker(string $url): array
     {
         $path = '/resource/v1/cdn/check/information';
         $params = [
-            'url' => (string)$url
+            'url' => $url
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -285,11 +285,11 @@ class Web extends BaseService
      * @param string $keywords 搜索关键词（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function taobaoSuggestions($keywords)
+    public function taobaoSuggestions(string $keywords): array
     {
         $path = '/resource/v1/taobao/search/suggest';
         $params = [
-            'keywords' => (string)$keywords
+            'keywords' => $keywords
         ];
         return $this->client->execute('POST', $path, $params);
     }

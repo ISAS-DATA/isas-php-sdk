@@ -7,6 +7,7 @@
  * @license MIT License
  * @link https://github.com/ISAS-DATA/isas-php-sdk
  */
+
 namespace Isas\Sdk\Services;
 
 use Isas\Sdk\BaseService;
@@ -18,7 +19,7 @@ class HotRank extends BaseService
      * 360热搜榜单
      * @return array API 返回的 JSON 数组
      */
-    public function top360()
+    public function top360(): array
     {
         $path = '/resource/v1/360/top';
         return $this->client->execute('POST', $path);
@@ -29,7 +30,7 @@ class HotRank extends BaseService
      * 快手热搜榜单
      * @return array API 返回的 JSON 数组
      */
-    public function kuaishouTop()
+    public function kuaishouTop(): array
     {
         $path = '/resource/v1/kuaishou/top';
         return $this->client->execute('POST', $path);
@@ -40,7 +41,7 @@ class HotRank extends BaseService
      * 夸克小说热榜获取服务
      * @return array API 返回的 JSON 数组
      */
-    public function quarkNovelTop()
+    public function quarkNovelTop(): array
     {
         $path = '/resource/v1/quark/novel/top';
         return $this->client->execute('POST', $path);
@@ -51,7 +52,7 @@ class HotRank extends BaseService
      * 夸克动漫热榜获取服务
      * @return array API 返回的 JSON 数组
      */
-    public function quarkComicTop()
+    public function quarkComicTop(): array
     {
         $path = '/resource/v1/quark/comic/top';
         return $this->client->execute('POST', $path);
@@ -62,7 +63,7 @@ class HotRank extends BaseService
      * 夸克电影热榜获取服务
      * @return array API 返回的 JSON 数组
      */
-    public function quarkFilmTop()
+    public function quarkFilmTop(): array
     {
         $path = '/resource/v1/quark/film/top';
         return $this->client->execute('POST', $path);
@@ -73,7 +74,7 @@ class HotRank extends BaseService
      * 夸克综艺热榜获取服务
      * @return array API 返回的 JSON 数组
      */
-    public function quarkVarietyTop()
+    public function quarkVarietyTop(): array
     {
         $path = '/resource/v1/quark/variety/top';
         return $this->client->execute('POST', $path);
@@ -84,7 +85,7 @@ class HotRank extends BaseService
      * 夸克影视剧热榜获取服务
      * @return array API 返回的 JSON 数组
      */
-    public function quarkTvTop()
+    public function quarkTvTop(): array
     {
         $path = '/resource/v1/quark/tv/top';
         return $this->client->execute('POST', $path);
@@ -96,7 +97,7 @@ class HotRank extends BaseService
      * 百度小说实时TOP榜单
      * @return array API 返回的 JSON 数组
      */
-    public function baiduNovelTop()
+    public function baiduNovelTop(): array
     {
         $path = '/resource/v1/baidu/novel/top';
         return $this->client->execute('POST', $path);
@@ -107,7 +108,7 @@ class HotRank extends BaseService
      * 今日头条热榜获取服务
      * @return array API 返回的 JSON 数组
      */
-    public function toutiaoHotlist()
+    public function toutiaoHotlist(): array
     {
         $path = '/resource/v1/toutiao/top';
         return $this->client->execute('POST', $path);
@@ -118,7 +119,7 @@ class HotRank extends BaseService
      * 豆瓣最近热门电影热榜单获取
      * @return array API 返回的 JSON 数组
      */
-    public function doubanRecentMoviesTop()
+    public function doubanRecentMoviesTop(): array
     {
         $path = '/resource/v1/douban/recent/movie/top';
         return $this->client->execute('POST', $path);
@@ -129,7 +130,7 @@ class HotRank extends BaseService
      * B 站 bilibili 热搜榜单获取
      * @return array API 返回的 JSON 数组
      */
-    public function bilibiliHotlist()
+    public function bilibiliHotlist(): array
     {
         $path = '/resource/v1/bilibili/search/top';
         return $this->client->execute('POST', $path);
@@ -140,7 +141,7 @@ class HotRank extends BaseService
      * 微博实时热搜榜单获取
      * @return array API 返回的 JSON 数组
      */
-    public function weiboHotlist()
+    public function weiboHotlist(): array
     {
         $path = '/resource/v1/weibo/top';
         return $this->client->execute('POST', $path);
@@ -152,7 +153,7 @@ class HotRank extends BaseService
      * CSDN 博客综合 TOP 榜单获取
      * @return array API 返回的 JSON 数组
      */
-    public function csdnBlogToplist()
+    public function csdnBlogToplist(): array
     {
         $path = '/resource/v1/csdn/blog/top';
         return $this->client->execute('POST', $path);
@@ -164,7 +165,7 @@ class HotRank extends BaseService
      * 搜狗实时热搜榜单获取
      * @return array API 返回的 JSON 数组
      */
-    public function sogouHotList()
+    public function sogouHotList(): array
     {
         $path = '/resource/v1/sogou/top';
         return $this->client->execute('POST', $path);
@@ -175,7 +176,7 @@ class HotRank extends BaseService
      * 知乎实时热搜榜数据获取
      * @return array API 返回的 JSON 数组
      */
-    public function zhihuHotlist()
+    public function zhihuHotlist(): array
     {
         $path = '/resource/v2/zhihu/top';
         return $this->client->execute('POST', $path);
@@ -186,7 +187,7 @@ class HotRank extends BaseService
      * 抖音实时热搜榜单获取
      * @return array API 返回的 JSON 数组
      */
-    public function douyinHotlist()
+    public function douyinHotlist(): array
     {
         $path = '/resource/v1/douyin/top';
         return $this->client->execute('POST', $path);
@@ -197,7 +198,7 @@ class HotRank extends BaseService
      * B 站 Bilibili 全站实时日榜获取
      * @return array API 返回的 JSON 数组
      */
-    public function bilibiliDailyRanking()
+    public function bilibiliDailyRanking(): array
     {
         $path = '/resource/v1/bilibili/today/top';
         return $this->client->execute('POST', $path);
@@ -208,7 +209,7 @@ class HotRank extends BaseService
      * 百度电视剧 TOP 榜单获取
      * @return array API 返回的 JSON 数组
      */
-    public function baiduTvTopList()
+    public function baiduTvTopList(): array
     {
         $path = '/resource/v1/baidu/teleplay/top';
         return $this->client->execute('POST', $path);
@@ -219,7 +220,7 @@ class HotRank extends BaseService
      * 百度实时 TOP 热点榜获取
      * @return array API 返回的 JSON 数组
      */
-    public function baiduToplist()
+    public function baiduToplist(): array
     {
         $path = '/resource/v1/baidu/top';
         return $this->client->execute('POST', $path);
@@ -230,7 +231,7 @@ class HotRank extends BaseService
      * 百度电影实时 TOP 榜单获取
      * @return array API 返回的 JSON 数组
      */
-    public function baiduMovieTopList()
+    public function baiduMovieTopList(): array
     {
         $path = '/resource/v1/baidu/movie/top';
         return $this->client->execute('POST', $path);
@@ -241,7 +242,7 @@ class HotRank extends BaseService
      * IT 之家今日实时热搜榜单获取
      * @return array API 返回的 JSON 数组
      */
-    public function ithomeHotlist()
+    public function ithomeHotlist(): array
     {
         $path = '/resource/v1/ithome/today/top';
         return $this->client->execute('POST', $path);
@@ -252,7 +253,7 @@ class HotRank extends BaseService
      * AcFun 全站实时日榜获取
      * @return array API 返回的 JSON 数组
      */
-    public function acfunDailyRanking()
+    public function acfunDailyRanking(): array
     {
         $path = '/resource/v1/acfun/today/top';
         return $this->client->execute('POST', $path);
@@ -263,7 +264,7 @@ class HotRank extends BaseService
      * 少数派实时热搜榜单获取
      * @return array API 返回的 JSON 数组
      */
-    public function sspaiHotlist()
+    public function sspaiHotlist(): array
     {
         $path = '/resource/v1/sspai/top';
         return $this->client->execute('POST', $path);

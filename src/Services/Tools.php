@@ -19,7 +19,7 @@ class Tools extends BaseService
      * 随机动漫壁纸
      * @return array API 返回的 JSON 数组
      */
-    public function animeWallpaperRandom()
+    public function animeWallpaperRandom(): array
     {
         $path = '/resource/v1/rand/anime/images';
         return $this->client->execute('POST', $path);
@@ -34,13 +34,13 @@ class Tools extends BaseService
      * @param string $device 输出设备：pc：pc端壁纸 mobile：移动端壁纸
      * @return array API 返回的 JSON 数组
      */
-    public function bingDailyPhoto($action, $day, $type, $device = "pc")
+    public function bingDailyPhoto(string $action, string $day, string $type, string $device = "pc"): array
     {
         $params = [
-            'action' => (string)$action,
-            'day' => (int)$day,
-            'type' => (string)$type,
-            'device' => (string)$device,
+            'action' => $action,
+            'day' => $day,
+            'type' => $type,
+            'device' => $device,
 
         ];
         $path = '/resource/v1/bing/wallpaper';
@@ -55,12 +55,12 @@ class Tools extends BaseService
      * @param int $page 页数，默认：1
      * @return array API 返回的 JSON 数组
      */
-    public function emojiSearch($keywords, $page = 1)
+    public function emojiSearch(string $keywords, int $page = 1): array
     {
         $path = '/resource/v1/emoji/search';
         $params = [
-            'keywords' => (string)$keywords,
-            'page' => (int)$page
+            'keywords' => $keywords,
+            'page' => $page
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -73,13 +73,13 @@ class Tools extends BaseService
      * @param string $price 油价（元/升）
      * @return array API 返回的 JSON 数组
      */
-    public function vehicleFuelCalculator($distance, $used, $price)
+    public function vehicleFuelCalculator(string $distance, string $used, string $price): array
     {
         $path = '/resource/v1/oli/consumption/calc';
         $params = [
-            'distance' => (string)$distance,
-            'used' => (string)$used,
-            'price' => (string)$price
+            'distance' => $distance,
+            'used' => $used,
+            'price' => $price
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -90,11 +90,11 @@ class Tools extends BaseService
      * @param string $name 姓名或企业名称
      * @return array API 返回的 JSON 数组
      */
-    public function chinaCreditBlacklist($name)
+    public function chinaCreditBlacklist(string $name): array
     {
         $path = '/resource/v1/laolai';
         $params = [
-            'name' => (string)$name,
+            'name' => $name,
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -107,13 +107,13 @@ class Tools extends BaseService
      * @param int $special 是否事故/改装车 (0/1)
      * @return array API 返回的 JSON 数组
      */
-    public function vehicleInspectionCalculator($reg_date, $type = 3, $special = 0)
+    public function vehicleInspectionCalculator(string $reg_date, int $type = 3, int $special = 0): array
     {
         $path = '/resource/v1/insurance/premium/calculation';
         $params = [
-            'type' => (int)$type,
-            'reg_date' => (string)$reg_date,
-            'special' => (int)$special,
+            'type' => $type,
+            'reg_date' => $reg_date,
+            'special' => $special,
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -123,7 +123,7 @@ class Tools extends BaseService
      * 每日一言 / 随机一言
      * @return array 包含 text 字段的数组
      */
-    public function dailyMotivation()
+    public function dailyMotivation(): array
     {
         $path = '/resource/v1/yiyan/rand';
         return $this->client->execute('POST', $path);
@@ -136,11 +136,11 @@ class Tools extends BaseService
      * @param string $keywords 搜索关键词（建议使用英文）
      * @return array API 返回的 JSON 数组
      */
-    public function pexels4kVideos($keywords)
+    public function pexels4kVideos(string $keywords): array
     {
         $path = '/resource/v1/pexels/video/search';
         $params = [
-            'keywords' => (string)$keywords,
+            'keywords' => $keywords,
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -151,11 +151,11 @@ class Tools extends BaseService
      * @param string $keywords 搜索关键词（建议使用英文）
      * @return array API 返回的 JSON 数组
      */
-    public function pexels4kPhotos($keywords)
+    public function pexels4kPhotos(string $keywords): array
     {
         $path = '/resource/v1/pexels/images/search';
         $params = [
-            'keywords' => (string)$keywords,
+            'keywords' => $keywords,
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -165,7 +165,7 @@ class Tools extends BaseService
      * 硬盘天梯排行榜数据
      * @return array API 返回的 JSON 数组
      */
-    public function harddiskRanking()
+    public function harddiskRanking(): array
     {
         $path = '/resource/v1/ssd/data';
         return $this->client->execute('POST', $path);
@@ -178,11 +178,11 @@ class Tools extends BaseService
      * @param string $type 输出类型：image（默认，直接输出图片）| json（返回base64数据）
      * @return array API 返回的 JSON 数组
      */
-    public function barcode69Generator($text, $type = 'image')
+    public function barcode69Generator(string $text, string $type = 'image'): array
     {
         $path = '/resource/v1/barcode/create';
         $params = [
-            'text' => (string)$text,
+            'text' => $text,
             'type' => $type
         ];
         return $this->client->execute('POST', $path, $params);
@@ -199,16 +199,16 @@ class Tools extends BaseService
      * @param string $location 位置（如“日本”）
      * @return array API 返回的 JSON 数组
      */
-    public function earthquakeHistory($m = '', $startTime = '', $endTime = '', $page = 1, $deph = 0, $location = '')
+    public function earthquakeHistory(string $m = '', string $startTime = '', string $endTime = '', int $page = 1, int $deph = 0, string $location = ''): array
     {
         $path = '/resource/v1/earthquak/data';
         $params = [
-            'm' => (string)$m,
-            'startTime' => (string)$startTime,
-            'endTime' => (string)$endTime,
-            'page' => (int)$page,
-            'deph' => (int)$deph,
-            'location' => (string)$location
+            'm' => $m,
+            'startTime' => $startTime,
+            'endTime' => $endTime,
+            'page' => $page,
+            'deph' => $deph,
+            'location' => $location
         ];
         $params = array_filter($params, function ($v) {
             return $v !== '' && $v !== 0;
@@ -223,11 +223,11 @@ class Tools extends BaseService
      * @param string $url 待检测的URL（需包含 http:// 或 https://）
      * @return array API 返回的 JSON 数组
      */
-    public function wechatUrlBlockChecker($url)
+    public function wechatUrlBlockChecker(string $url): array
     {
         $path = '/resource/v1/wechat/url/check';
         $params = [
-            'url' => (string)$url
+            'url' => $url
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -235,14 +235,14 @@ class Tools extends BaseService
     /**
      * 中国法定节假日数据查询
      * https://api.istero.com/service/doc/holiday-data
-     * @param int $date 查询日期（例如 2025-05-01）
+     * @param string $date 查询日期（例如 2025-05-01）
      * @return array API 返回的 JSON 数组
      */
-    public function holidayData($date)
+    public function holidayData(string $date): array
     {
         $path = '/resource/v1/check/holiday';
         $params = [
-            'date' => (int)$date
+            'date' => $date
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -253,11 +253,11 @@ class Tools extends BaseService
      * @param string $number 待查询的手机号码
      * @return array API 返回的 JSON 数组
      */
-    public function spamCallChecker($number)
+    public function spamCallChecker(string $number): array
     {
         $path = '/resource/v1/harassing/calls';
         $params = [
-            'number' => (string)$number
+            'number' => $number
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -269,12 +269,12 @@ class Tools extends BaseService
      * @param int $page 页码（可选，默认 1）
      * @return array API 返回的 JSON 数组
      */
-    public function tvLiveSources($name, $page = 1)
+    public function tvLiveSources(string $name, int $page = 1): array
     {
         $path = '/resource/v1/tv/host';
         $params = [
-            'name' => (string)$name,
-            'page' => max(1, (int)$page)
+            'name' => $name,
+            'page' => max(1, $page)
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -285,11 +285,11 @@ class Tools extends BaseService
      * @param string $keywords 字体关键字（如“黑体”）
      * @return array API 返回的 JSON 数组
      */
-    public function fontLicenseCheck($keywords)
+    public function fontLicenseCheck(string $keywords): array
     {
         $path = '/resource/v1/font/copyright';
         $params = [
-            'keywords' => (string)$keywords
+            'keywords' => $keywords
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -300,11 +300,11 @@ class Tools extends BaseService
      * @param string $url 图片URL或Base64编码的图片数据
      * @return array API 返回的 JSON 数组
      */
-    public function qrCodeScanner($url)
+    public function qrCodeScanner(string $url): array
     {
         $path = '/resource/v1/qrcode/render';
         $params = [
-            'url' => (string)$url
+            'url' => $url
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -318,14 +318,14 @@ class Tools extends BaseService
      * @param string $sid 记录ID（get/delete时必填，save后返回）
      * @return array API 返回的 JSON 数组
      */
-    public function cloudTextStorage($action, $text = '', $sid = '')
+    public function cloudTextStorage(string $action, string $text = '', string $sid = ''): array
     {
         $path = '/resource/v1/text/storage';
         $params = [
             'action' => $action,
         ];
         if ($action === 'save') {
-            $params['text'] = (string)$text;
+            $params['text'] = $text;
         } elseif (in_array($action, ['get', 'delete']) && $sid) {
             $params['sid'] = $sid;
         }
@@ -338,11 +338,11 @@ class Tools extends BaseService
      * @param string $keyword 省份或城市名称（如“成都”）
      * @return array API 返回的 JSON 数组
      */
-    public function chinaGasPricesV2($keyword)
+    public function chinaGasPricesV2(string $keyword): array
     {
         $path = '/resource/v2/oilprice';
         $params = [
-            'keyword' => (string)$keyword
+            'keyword' => $keyword
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -354,12 +354,12 @@ class Tools extends BaseService
      * @param int $type 转换类型：0=简转标准繁, 1=简转台湾繁, 2=简转香港繁, 3=标准繁转简, 4=台湾繁转简, 5=香港繁转简
      * @return array
      */
-    public function hanziConvert($text, $type = 0)
+    public function hanziConvert(string $text, int $type = 0): array
     {
         $path = '/resource/v2/hanzi/convert';
         $params = [
-            'text' => (string)$text,
-            'type' => (int)$type
+            'text' => $text,
+            'type' => $type
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -371,11 +371,11 @@ class Tools extends BaseService
      * @param string $url 百度网盘分享链接
      * @return array API 返回的 JSON 数组
      */
-    public function baidunetdiskLinkStatusCheck($url)
+    public function baidunetdiskLinkStatusCheck(string $url): array
     {
         $path = '/resource/v1/baidu/disk/status';
         $params = [
-            'url' => (string)$url
+            'url' => $url
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -388,12 +388,12 @@ class Tools extends BaseService
      * @param string $type 输出类型：image图片 / json返回base64
      * @return array API 返回的 JSON 数组
      */
-    public function wechatQrcodeGenerator($user_account, $type = 'image')
+    public function wechatQrcodeGenerator(string $user_account, string $type = 'image'): array
     {
         $path = '/resource/v1/mpweixin/qrcode/create';
         $params = [
-            'user_account' => (string)$user_account,
-            'type' => (string)$type
+            'user_account' => $user_account,
+            'type' => $type
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -403,7 +403,7 @@ class Tools extends BaseService
      * https://api.istero.com/service/doc/current-time-greeting
      * @return array API 返回的 JSON 数组
      */
-    public function currentTimeGreeting()
+    public function currentTimeGreeting(): array
     {
         $path = '/resource/v1/greeting/message';
         return $this->client->execute('POST', $path);
@@ -412,18 +412,18 @@ class Tools extends BaseService
     /**
      * 支付宝到账音效生成
      * https://api.istero.com/service/doc/alipay-payment-sound
-     * @param string $money 金额
+     * @param float $money 金额
      * @param string $voice_type 音效类型：alipay支付宝 / koubei口碑
      * @param string $format_type 输出格式：audio音频流 / json返回json
      * @return array API 返回的 JSON 数组
      */
-    public function alipayPaymentSound($money, $voice_type = 'alipay', $format_type = 'json')
+    public function alipayPaymentSound(float $money, string $voice_type = 'alipay', string $format_type = 'json'): array
     {
         $path = '/resource/v1/alipay/voice';
         $params = [
-            'money' => (string)$money,
-            'voice_type' => (string)$voice_type,
-            'format_type' => (string)$format_type
+            'money' => $money,
+            'voice_type' => $voice_type,
+            'format_type' => $format_type
         ];
 
         return $this->client->execute('POST', $path, $params);
@@ -433,18 +433,18 @@ class Tools extends BaseService
     /**
      * 全球货币汇率查询与兑换计算
      * https://api.istero.com/service/doc/currency-exchange-rates
-     * @param int $price 金额
+     * @param float $price 金额
      * @param string $form 原始币种
      * @param string $to 目标币种
      * @return array API 返回的 JSON 数组
      */
-    public function currencyExchangeRates($price, $form, $to)
+    public function currencyExchangeRates(float $price, string $form, string $to): array
     {
         $path = '/resource/v1/exchange/rate';
         $params = [
-            'price' => (string)$price,
-            'form' => (string)$form,
-            'to' => (string)$to
+            'price' => $price,
+            'form' => $form,
+            'to' => $to
         ];
 
         return $this->client->execute('POST', $path, $params);
@@ -462,7 +462,7 @@ class Tools extends BaseService
      *   - mode int 玩法：1火车,2美食林,3周末游,4省钱,5穷游,6奢侈,7酒店,8摄影,9徒步,10自驾,11露营,12骑行,13海滨海岛,14滑雪,15潜水,16游轮,17古镇,18购物
      * @return array API 返回的 JSON 数组
      */
-    public function tripArticleFetch($params = [])
+    public function tripArticleFetch(array $params = []): array
     {
         $path = '/resource/v1/ctrip/travel/books';
         $validParams = ['pageNum', 'who', 'day', 'time', 'mode'];
@@ -482,7 +482,7 @@ class Tools extends BaseService
      * 获取今日金价
      * @return array API 返回的 JSON 数组
      */
-    public function goldPriceToday()
+    public function goldPriceToday(): array
     {
         $path = '/resource/v1/gold/price';
         return $this->client->execute('POST', $path);
@@ -494,11 +494,11 @@ class Tools extends BaseService
      * @param string $year 年份（1990-2026）
      * @return array API 返回的 JSON 数组
      */
-    public function chineseSolarTerms($year)
+    public function chineseSolarTerms(string $year): array
     {
         $path = '/resource/v1/year/solar/terms/query';
         $params = [
-            'year' => (string)$year
+            'year' => $year
         ];
         return $this->client->execute('GET', $path, $params);
     }
@@ -510,11 +510,11 @@ class Tools extends BaseService
      * @param string $word 要查询的词语（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function wordAntonymsSearch($word)
+    public function wordAntonymsSearch(string $word): array
     {
         $path = '/resource/v1/word/fanyi';
         $params = [
-            'word' => (string)$word
+            'word' => $word
         ];
         return $this->client->execute('GET', $path, $params);
     }
@@ -526,11 +526,11 @@ class Tools extends BaseService
      * @param string $word 要查询的词语（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function synonymsLookup($word)
+    public function synonymsLookup(string $word): array
     {
         $path = '/resource/v1/word/jinyi';
         $params = [
-            'word' => (string)$word
+            'word' => $word
         ];
         return $this->client->execute('GET', $path, $params);
     }
@@ -542,11 +542,11 @@ class Tools extends BaseService
      * @param string $number 车牌号（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function licensePlateLookup($number)
+    public function licensePlateLookup(string $number): array
     {
         $path = '/resource/v1/car/number/belonging';
         $params = [
-            'number' => (string)$number
+            'number' => $number
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -557,11 +557,11 @@ class Tools extends BaseService
      * @param string $url 微信公众号文章链接（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function wechatMusicExtractor($url)
+    public function wechatMusicExtractor(string $url): array
     {
         $path = '/resource/v1/weixin/article/music';
         $params = [
-            'url' => (string)$url
+            'url' => $url
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -571,7 +571,7 @@ class Tools extends BaseService
      * 猫眼电影实时票房 Top 榜
      * @return array API 返回的 JSON 数组
      */
-    public function maoyanBoxOffice()
+    public function maoyanBoxOffice(): array
     {
         $path = '/resource/v1/maoyan/movie/top';
         return $this->client->execute('POST', $path);
@@ -584,11 +584,11 @@ class Tools extends BaseService
      * @param string $phone 手机号码（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function zhouyiMobileLuck($phone)
+    public function zhouyiMobileLuck(string $phone): array
     {
         $path = '/resource/v1/zhouyi/phone/query';
         $params = [
-            'phone' => (string)$phone
+            'phone' => $phone
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -599,11 +599,11 @@ class Tools extends BaseService
      * @param string $keyword 关键词（国家名称、首都名称，必填）
      * @return array API 返回的 JSON 数组
      */
-    public function countryInfoQuery($keyword)
+    public function countryInfoQuery(string $keyword): array
     {
         $path = '/resource/v1/countries/data/query';
         $params = [
-            'keyword' => (string)$keyword
+            'keyword' => $keyword
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -615,11 +615,11 @@ class Tools extends BaseService
      * @param string $date 日期（格式：Y-m-d，如 2024-02-19，必填）
      * @return array API 返回的 JSON 数组
      */
-    public function solarTermsByDate($date)
+    public function solarTermsByDate(string $date): array
     {
         $path = '/resource/v1/solar/terms/query';
         $params = [
-            'date' => (string)$date
+            'date' => $date
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -631,11 +631,11 @@ class Tools extends BaseService
      * @param string $name 菜名关键词（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function recipeCollection($name)
+    public function recipeCollection(string $name): array
     {
         $path = '/resource/v1/cookbook';
         $params = [
-            'name' => (string)$name
+            'name' => $name
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -646,21 +646,21 @@ class Tools extends BaseService
      * 工资个税计算服务（2026版）
      * @param float $salary 月薪（必填）
      * @param float $bonus 年终奖
-     * @param float $insurance_base 社保基数
+     * @param float|null $insurance_base 社保基数
      * @param array $deductions 专项附加扣除数组 [children_education, ...]
      * @return array API 返回的 JSON 数组
      */
-    public function taxCalculator2026($salary, $bonus = 0.0, $insurance_base = null, $deductions = [])
+    public function taxCalculator2026(float $salary, float $bonus = 0.0, float $insurance_base = null, array $deductions = []): array
     {
         $path = '/resource/v1/calculate/tax/2026';
 
         $params = [
-            'salary' => (float)$salary,
-            'bonus' => (float)$bonus,
+            'salary' => $salary,
+            'bonus' => $bonus,
         ];
 
         if ($insurance_base !== null) {
-            $params['insurance_base'] = (float)$insurance_base;
+            $params['insurance_base'] = $insurance_base;
         }
 
         if (!empty($deductions)) {
@@ -675,7 +675,7 @@ class Tools extends BaseService
      * GPU天梯排行榜数据
      * @return array API 返回的 JSON 数组
      */
-    public function gpuRanking()
+    public function gpuRanking(): array
     {
         $path = '/resource/v1/gpu/data';
         return $this->client->execute('POST', $path);
@@ -687,11 +687,11 @@ class Tools extends BaseService
      * @param string $mid QQ音乐歌曲MID（必填）
      * @return array API返回的JSON数组，包含lrc歌词
      */
-    public function qqmusicLyrics($mid)
+    public function qqmusicLyrics(string $mid): array
     {
         $path = '/resource/v1/qqmusic/lyric/get';
         $params = [
-            'mid' => (string)$mid
+            'mid' => $mid
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -702,11 +702,11 @@ class Tools extends BaseService
      * @param string $word 查询词汇（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function baiduSuggestKeywords($word)
+    public function baiduSuggestKeywords(string $word): array
     {
         $path = '/resource/v1/baidu/keywords';
         $params = [
-            'word' => (string)$word
+            'word' => $word
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -717,11 +717,11 @@ class Tools extends BaseService
      * @param string $city 城市名称（如“北京”或“沈阳市”）
      * @return array API 返回的 JSON 数组
      */
-    public function weatherHefengV1($city)
+    public function weatherHefengV1(string $city): array
     {
         $path = '/resource/v1/hefeng/weather';
         $params = [
-            'city' => (string)$city
+            'city' => $city
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -734,12 +734,12 @@ class Tools extends BaseService
      * @param string $prefix 号段前缀（如"13"、"176"，默认随机）
      * @return array API 返回的 JSON 数组
      */
-    public function phoneNumberGenerator($count = 1, $prefix = '')
+    public function phoneNumberGenerator(int $count = 1, string $prefix = ''): array
     {
         $path = '/resource/v1/phone/generate';
         $params = [
-            'count' => (int)$count,
-            'prefix' => (string)$prefix
+            'count' => $count,
+            'prefix' => $prefix
         ];
         if (empty($params['prefix'])) {
             unset($params['prefix']);
@@ -753,11 +753,11 @@ class Tools extends BaseService
      * @param int $gameID Steam游戏数字ID（必填，如 3240220）
      * @return array API 返回的 JSON 数组
      */
-    public function steamGamesData($gameID)
+    public function steamGamesData(int $gameID): array
     {
         $path = '/resource/v1/steam/game/stats';
         $params = [
-            'gameID' => (int)$gameID
+            'gameID' => $gameID
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -768,11 +768,11 @@ class Tools extends BaseService
      * @param int $year 查询年份（如 2025）
      * @return array API 返回的 JSON 数组
      */
-    public function chineseHolidaysData($year)
+    public function chineseHolidaysData(int $year): array
     {
         $path = '/resource/v1/hoilday/query';
         $params = [
-            'year' => (int)$year
+            'year' => $year
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -783,11 +783,11 @@ class Tools extends BaseService
      * @param string $province 省份名称（如"辽宁"、"北京"）
      * @return array API 返回的 JSON 数组
      */
-    public function chinaGasPrices($province)
+    public function chinaGasPrices(string $province): array
     {
         $path = '/resource/v1/oilprice';
         $params = [
-            'province' => (string)$province
+            'province' => $province
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -798,11 +798,11 @@ class Tools extends BaseService
      * @param string $url 微信公众号文章链接（必填，如 "https://mp.weixin.qq.com/s/..."）
      * @return array API 返回的 JSON 数组
      */
-    public function wechatArticleFetch($url)
+    public function wechatArticleFetch(string $url): array
     {
         $path = '/resource/v1/wechat/article/fetch';
         $params = [
-            'url' => (string)$url
+            'url' => $url
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -813,11 +813,11 @@ class Tools extends BaseService
      * @param string $word 查询关键词（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function suggestKeywords360($word)
+    public function suggestKeywords360(string $word): array
     {
         $path = '/resource/v1/360/keywords';
         $params = [
-            'word' => (string)$word
+            'word' => $word
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -828,11 +828,11 @@ class Tools extends BaseService
      * @param string $city 城市名称（如“大连”、“上海”）
      * @return array API 返回的 JSON 数组
      */
-    public function weatherV2($city)
+    public function weatherV2(string $city): array
     {
         $path = '/resource/v2/weather/query';
         $params = [
-            'city' => (string)$city
+            'city' => $city
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -845,13 +845,13 @@ class Tools extends BaseService
      * @param int $simple 是否简易版（可选，1:直接输出结果，默认 0）
      * @return array API 返回的 JSON 数组
      */
-    public function randomDraw($data, $need = 1, $simple = 0)
+    public function randomDraw(string $data, int $need = 1, int $simple = 0): array
     {
         $path = '/resource/v1/draw/lots';
         $params = [
-            'data' => (string)$data,
-            'need' => (int)$need,
-            'simple' => (int)$simple
+            'data' => $data,
+            'need' => $need,
+            'simple' => $simple
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -862,7 +862,7 @@ class Tools extends BaseService
      * 电源天梯排行榜数据
      * @return array API 返回的 JSON 数组
      */
-    public function powerSupplyRanking()
+    public function powerSupplyRanking(): array
     {
         $path = '/resource/v1/power/data';
         return $this->client->execute('POST', $path);
@@ -875,11 +875,11 @@ class Tools extends BaseService
      * @param string $lang 语言 cn:中文 en:英文
      * @return array API 返回的 JSON 数组
      */
-    public function epicFreeGames($lang = 'cn')
+    public function epicFreeGames(string $lang = 'cn'): array
     {
         $path = '/resource/v1/epic/free/game';
         $params = [
-            'lang' => (string)$lang
+            'lang' => $lang
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -890,11 +890,11 @@ class Tools extends BaseService
      * @param string $type 输出类型 json:json数据 audio:直接输出音频
      * @return array API 返回的 JSON 数组
      */
-    public function coinToss($type = 'json')
+    public function coinToss(string $type = 'json'): array
     {
         $path = '/resource/v1/flip/coin';
         $params = [
-            'type' => (string)$type
+            'type' => $type
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -905,11 +905,11 @@ class Tools extends BaseService
      * @param string $url 文章链接（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function tencentCloudArticle($url)
+    public function tencentCloudArticle(string $url): array
     {
         $path = '/resource/v1/cloud/tencent/article/get';
         $params = [
-            'url' => (string)$url
+            'url' => $url
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -919,7 +919,7 @@ class Tools extends BaseService
      * CPU 天梯排行榜数据获取
      * @return array API 返回的 JSON 数组
      */
-    public function cpuRanking()
+    public function cpuRanking(): array
     {
         $path = '/resource/v1/cpu/data';
         return $this->client->execute('POST', $path);
@@ -932,11 +932,11 @@ class Tools extends BaseService
      * @param string $keyword 搜索关键词（歌名 歌手，必填）
      * @return array API 返回的 JSON 数组
      */
-    public function qqMusicMid($keyword)
+    public function qqMusicMid(string $keyword): array
     {
         $path = '/resource/v1/qqmusic/mid/get';
         $params = [
-            'keyword' => (string)$keyword
+            'keyword' => $keyword
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -951,14 +951,14 @@ class Tools extends BaseService
      * @param int $precision 返回结果的小数点精度，默认 2（可选）
      * @return array API 返回的 JSON 数组
      */
-    public function pressureUnitConverter($value, $fromUnit, $toUnit, $precision = 2)
+    public function pressureUnitConverter(float $value, string $fromUnit, string $toUnit, int $precision = 2): array
     {
         $path = '/resource/v1/pressure/converter';
         $params = [
-            'value' => (float)$value,
-            'from_unit' => (string)$fromUnit,
-            'to_unit' => (string)$toUnit,
-            'precision' => (int)$precision
+            'value' => $value,
+            'from_unit' => $fromUnit,
+            'to_unit' => $toUnit,
+            'precision' => $precision
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -972,14 +972,14 @@ class Tools extends BaseService
      * @param int $precision 返回结果的小数点精度，默认 3（可选）
      * @return array API 返回的 JSON 数组
      */
-    public function volumeUnitConverter($value, $fromUnit, $toUnit, $precision = 3)
+    public function volumeUnitConverter(float $value, string $fromUnit, string $toUnit, int $precision = 3): array
     {
         $path = '/resource/v1/volume/converter';
         $params = [
-            'value' => (float)$value,
-            'from_unit' => (string)$fromUnit,
-            'to_unit' => (string)$toUnit,
-            'precision' => (int)$precision
+            'value' => $value,
+            'from_unit' => $fromUnit,
+            'to_unit' => $toUnit,
+            'precision' => $precision
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -993,14 +993,14 @@ class Tools extends BaseService
      * @param int $precision 返回结果的小数点精度，默认 2（可选）
      * @return array API 返回的 JSON 数组
      */
-    public function powerUnitConverter($value, $fromUnit, $toUnit, $precision = 2)
+    public function powerUnitConverter(float $value, string $fromUnit, string $toUnit, int $precision = 2): array
     {
         $path = '/resource/v1/power/converter';
         $params = [
-            'value' => (float)$value,
-            'from_unit' => (string)$fromUnit,
-            'to_unit' => (string)$toUnit,
-            'precision' => (int)$precision
+            'value' => $value,
+            'from_unit' => $fromUnit,
+            'to_unit' => $toUnit,
+            'precision' => $precision
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -1016,16 +1016,16 @@ class Tools extends BaseService
      * @param float $fuel_consumption 油耗(L/100km)，默认6.0
      * @return array API 返回的 JSON 数组
      */
-    public function phevCostCalculator($electric_distance, $fuel_distance, $electricity_price, $fuel_price, $electric_consumption = 20.0, $fuel_consumption = 6.0)
+    public function phevCostCalculator(float $electric_distance, float $fuel_distance, float $electricity_price, float $fuel_price, float $electric_consumption = 20.0, float $fuel_consumption = 6.0): array
     {
         $path = '/resource/v1/energy/car/cost/calc';
         $params = [
-            'electric_distance' => (float)$electric_distance,
-            'fuel_distance' => (float)$fuel_distance,
-            'electricity_price' => (float)$electricity_price,
-            'fuel_price' => (float)$fuel_price,
-            'electric_consumption' => (float)$electric_consumption,
-            'fuel_consumption' => (float)$fuel_consumption
+            'electric_distance' => $electric_distance,
+            'fuel_distance' => $fuel_distance,
+            'electricity_price' => $electricity_price,
+            'fuel_price' => $fuel_price,
+            'electric_consumption' => $electric_consumption,
+            'fuel_consumption' => $fuel_consumption
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -1039,14 +1039,14 @@ class Tools extends BaseService
      * @param int $precision 返回结果的小数点精度，默认 6（可选）
      * @return array API 返回的 JSON 数组
      */
-    public function lengthUnitConverter($value, $fromUnit, $toUnit, $precision = 6)
+    public function lengthUnitConverter(float $value, string $fromUnit, string $toUnit, int $precision = 6): array
     {
         $path = '/resource/v1/length/converter';
         $params = [
-            'value' => (float)$value,
-            'from_unit' => (string)$fromUnit,
-            'to_unit' => (string)$toUnit,
-            'precision' => (int)$precision
+            'value' => $value,
+            'from_unit' => $fromUnit,
+            'to_unit' => $toUnit,
+            'precision' => $precision
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -1061,14 +1061,14 @@ class Tools extends BaseService
      * @param int $precision 返回结果的小数点精度，默认 2（可选）
      * @return array API 返回的 JSON 数组
      */
-    public function areaUnitConverter($value, $fromUnit, $toUnit, $precision = 2)
+    public function areaUnitConverter(float $value, string $fromUnit, string $toUnit, int $precision = 2): array
     {
         $path = '/resource/v1/area/converter';
         $params = [
-            'value' => (float)$value,
-            'from_unit' => (string)$fromUnit,
-            'to_unit' => (string)$toUnit,
-            'precision' => (int)$precision
+            'value' => $value,
+            'from_unit' => $fromUnit,
+            'to_unit' => $toUnit,
+            'precision' => $precision
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -1083,14 +1083,14 @@ class Tools extends BaseService
      * @param int $precision 返回结果的小数点精度，默认 2（可选）
      * @return array API 返回的 JSON 数组
      */
-    public function temperatureConverter($value, $fromUnit, $toUnit, $precision = 2)
+    public function temperatureConverter(float $value, string $fromUnit, string $toUnit, int $precision = 2): array
     {
         $path = '/resource/v1/temperature/converter';
         $params = [
-            'value' => (float)$value,
-            'from_unit' => (string)$fromUnit,
-            'to_unit' => (string)$toUnit,
-            'precision' => (int)$precision
+            'value' => $value,
+            'from_unit' => $fromUnit,
+            'to_unit' => $toUnit,
+            'precision' => $precision
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -1104,14 +1104,14 @@ class Tools extends BaseService
      * @param int $precision 返回结果的小数点精度，默认 4（可选）
      * @return array API 返回的 JSON 数组
      */
-    public function weightUnitConverter($value, $fromUnit, $toUnit, $precision = 4)
+    public function weightUnitConverter(float $value, string $fromUnit, string $toUnit, int $precision = 4): array
     {
         $path = '/resource/v1/weight/converter';
         $params = [
-            'value' => (float)$value,
-            'from_unit' => (string)$fromUnit,
-            'to_unit' => (string)$toUnit,
-            'precision' => (int)$precision
+            'value' => $value,
+            'from_unit' => $fromUnit,
+            'to_unit' => $toUnit,
+            'precision' => $precision
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -1123,11 +1123,11 @@ class Tools extends BaseService
      * @param string $keyword 成语关键词（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function chineseIdioms($keyword)
+    public function chineseIdioms(string $keyword): array
     {
         $path = '/resource/v1/chengyu/query';
         $params = [
-            'keyword' => (string)$keyword
+            'keyword' => $keyword
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -1137,7 +1137,7 @@ class Tools extends BaseService
      * 历史上的今天查询
      * @return array API 返回的 JSON 数组
      */
-    public function historyOfToday()
+    public function historyOfToday(): array
     {
         $path = '/resource/v1/history/today';
         return $this->client->execute('POST', $path);
@@ -1148,7 +1148,7 @@ class Tools extends BaseService
      * 历史上的昨天查询
      * @return array API 返回的 JSON 数组
      */
-    public function historyOfYesterday()
+    public function historyOfYesterday(): array
     {
         $path = '/resource/v1/history/yesterday';
         return $this->client->execute('POST', $path);
@@ -1161,11 +1161,11 @@ class Tools extends BaseService
      * @param int $level QQ等级 1-256（必填）
      * @return mixed 图片二进制或API响应数组
      */
-    public function qqLevelToImage($level)
+    public function qqLevelToImage(int $level): array
     {
         $path = '/resource/v1/qq/level/to/image';
         $params = [
-            'level' => (int)$level
+            'level' => $level
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -1176,11 +1176,11 @@ class Tools extends BaseService
      * @param string $keywords 检索关键字（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function historicalFiguresBio($keywords)
+    public function historicalFiguresBio(string $keywords): array
     {
         $path = '/resource/v1/guren/information';
         $params = [
-            'keywords' => (string)$keywords
+            'keywords' => $keywords
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -1192,12 +1192,12 @@ class Tools extends BaseService
      * @param string $type 输出类型 image/json（可选，默认image）
      * @return array API 返回的 JSON 数组
      */
-    public function barcode69GeneratorPro($number, $type = 'image')
+    public function barcode69GeneratorPro(string $number, string $type = 'image'): array
     {
         $path = '/resource/v1/barcode/pro/create';
         $params = [
-            'number' => (string)$number,
-            'type' => (string)$type
+            'number' => $number,
+            'type' => $type
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -1211,14 +1211,14 @@ class Tools extends BaseService
      * @param int $type 计算类型 1等额本息 2等额本金（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function mortgageCalculator($total, $year, $rate, $type)
+    public function mortgageCalculator(string $total, int $year, string $rate, int $type): array
     {
         $path = '/resource/v1/accumulation/fund/calc';
         $params = [
-            'total' => (string)$total,
-            'year' => (int)$year,
-            'rate' => (string)$rate,
-            'type' => (int)$type
+            'total' => $total,
+            'year' => $year,
+            'rate' => $rate,
+            'type' => $type
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -1228,7 +1228,7 @@ class Tools extends BaseService
      * 整点语音播报提醒
      * @return array API 返回的 JSON 数组
      */
-    public function hourlyVoiceAlert()
+    public function hourlyVoiceAlert(): array
     {
         $path = '/resource/v1/hourly/voice/announcement';
         return $this->client->execute('GET', $path);
@@ -1242,12 +1242,12 @@ class Tools extends BaseService
      * @param string $num 快递单号（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function expressDeliveryTracker($com, $num)
+    public function expressDeliveryTracker(string $com, string $num): array
     {
         $path = '/resource/v1/kuaidi/query';
         $params = [
-            'com' => (string)$com,
-            'num' => (string)$num
+            'com' => $com,
+            'num' => $num
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -1258,11 +1258,11 @@ class Tools extends BaseService
      * @param string $car 车辆名称型号（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function vehiclePriceChecker($car)
+    public function vehiclePriceChecker(string $car): array
     {
         $path = '/resource/v1/car/price';
         $params = [
-            'car' => (string)$car
+            'car' => $car
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -1274,12 +1274,12 @@ class Tools extends BaseService
      * @param string $year 假设自己能活多少年（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function lifeProgressTracker($birthday, $year)
+    public function lifeProgressTracker(string $birthday, string $year): array
     {
         $path = '/resource/v1/life/countdown';
         $params = [
-            'birthday' => (string)$birthday,
-            'year' => (string)$year
+            'birthday' => $birthday,
+            'year' => $year
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -1290,11 +1290,11 @@ class Tools extends BaseService
      * @param int $year 待查询年份（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function leapYearChecker($year)
+    public function leapYearChecker(string $year): array
     {
         $path = '/resource/v1/leap/year';
         $params = [
-            'year' => (int)$year
+            'year' => $year
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -1305,11 +1305,11 @@ class Tools extends BaseService
      * @param string $url 图片网络地址（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function imageUrlToBase64($url)
+    public function imageUrlToBase64(string $url): array
     {
         $path = '/resource/v1/images/base64';
         $params = [
-            'url' => (string)$url
+            'url' => $url
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -1320,12 +1320,12 @@ class Tools extends BaseService
      * @param string $type 输出类型（可选，image：图片输出，json：JSON输出）
      * @return array API 返回的 JSON 数组
      */
-    public function randomMaleAvatars($type = null)
+    public function randomMaleAvatars(string $type = null): array
     {
         $path = '/resource/v1/boy/rand/avatar';
         $params = [];
         if ($type !== null) {
-            $params['type'] = (string)$type;
+            $params['type'] = $type;
         }
         return $this->client->execute('POST', $path, $params);
     }
@@ -1336,12 +1336,12 @@ class Tools extends BaseService
      * @param int $type 头像风格类型（可选，1-7，默认1）
      * @return array API 返回的 JSON 数组
      */
-    public function randomGilrsAvatars($type = null)
+    public function randomGilrsAvatars(string $type = null): array
     {
         $path = '/resource/v1/girl/avatar/get';
         $params = [];
         if ($type !== null) {
-            $params['type'] = (int)$type;
+            $params['type'] = $type;
         }
         return $this->client->execute('POST', $path, $params);
     }
@@ -1353,11 +1353,11 @@ class Tools extends BaseService
      * @param string $number 银行卡号（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function bankCardInfo($number)
+    public function bankCardInfo(string $number): array
     {
         $path = '/resource/v1/bank/number/query';
         $params = [
-            'number' => (string)$number
+            'number' => $number
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -1368,11 +1368,11 @@ class Tools extends BaseService
      * @param string $content 待检测文本内容（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function aiSensitiveWordFilter($content)
+    public function aiSensitiveWordFilter(string $content): array
     {
         $path = '/resource/v1/sensitive/check';
         $params = [
-            'content' => (string)$content
+            'content' => $content
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -1385,13 +1385,13 @@ class Tools extends BaseService
      * @param string $type 资源类型 0：影视 1：软件 2：书籍 3：游戏
      * @return array API 返回的 JSON 数组
      */
-    public function diskSourceSearch($keywords, $disk, $type)
+    public function diskSourceSearch(string $keywords, string $disk, string $type): array
     {
         $path = '/resource/v1/disk/source/search';
         $params = [
-            'keywords' => (string)$keywords,
-            'disk' => (int)$disk,
-            'type' => (int)$type,
+            'keywords' => $keywords,
+            'disk' => $disk,
+            'type' => $type,
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -1402,11 +1402,11 @@ class Tools extends BaseService
      * @param string $text 待转换的中文字符串
      * @return array API 返回的 JSON 数组
      */
-    public function chineseToPinyin($text)
+    public function chineseToPinyin(string $text): array
     {
         $path = '/resource/v1/pinyin/convert';
         $params = [
-            'text' => (string)$text
+            'text' => $text
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -1418,14 +1418,14 @@ class Tools extends BaseService
      * @param string $type 输出类型，image：图片输出，json：返回base64（可选）
      * @return array API 返回的 JSON 数组
      */
-    public function qrcodeGenerator($text, $type = null)
+    public function qrcodeGenerator(string $text, string $type = null): array
     {
         $path = '/resource/v1/qrcode/create';
         $params = [
-            'text' => (string)$text
+            'text' => $text
         ];
         if ($type !== null) {
-            $params['type'] = (string)$type;
+            $params['type'] = $type;
         }
         return $this->client->execute('POST', $path, $params);
     }
@@ -1439,14 +1439,14 @@ class Tools extends BaseService
      * @param int $count 生成数量
      * @return array API 返回的 JSON 数组
      */
-    public function randomEmailGenerator($type, $domain, $length, $count)
+    public function randomEmailGenerator(int $type, string $domain, int $length, int $count): array
     {
         $path = '/resource/v1/create/mail/rand';
         $params = [
-            'type' => (int)$type,
-            'domain' => (string)$domain,
-            'length' => (int)$length,
-            'count' => (int)$count
+            'type' => $type,
+            'domain' => $domain,
+            'length' => $length,
+            'count' => $count
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -1458,11 +1458,11 @@ class Tools extends BaseService
      * @param string $text 歇后语关键字（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function xiehouyuQuery($text)
+    public function xiehouyuQuery(string $text): array
     {
         $path = '/resource/v1/xiehouyu/query';
         $params = [
-            'text' => (string)$text
+            'text' => $text
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -1473,11 +1473,11 @@ class Tools extends BaseService
      * @param string $number 待查询手机号码（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function phoneNumberChecker($number)
+    public function phoneNumberChecker(string $number): array
     {
         $path = '/resource/v1/phone/check';
         $params = [
-            'number' => (string)$number
+            'number' => $number
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -1487,7 +1487,7 @@ class Tools extends BaseService
      * 获取每日随机笑话
      * @return array API 返回的 JSON 数组
      */
-    public function dailyJokes()
+    public function dailyJokes(): array
     {
         $path = '/resource/v1/joke/today';
         return $this->client->execute('POST', $path);
@@ -1498,7 +1498,7 @@ class Tools extends BaseService
      * 获取随机成语（含名称、拼音、解释）
      * @return array API 返回的 JSON 数组
      */
-    public function randomChineseIdioms()
+    public function randomChineseIdioms(): array
     {
         $path = '/resource/v1/chengyu/get';
         return $this->client->execute('POST', $path);
@@ -1510,11 +1510,11 @@ class Tools extends BaseService
      * @param string $question 想要咨询的问题（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function bookOfAnswers($question)
+    public function bookOfAnswers(string $question): array
     {
         $path = '/resource/v1/answersbook';
         $params = [
-            'question' => (string)$question
+            'question' => $question
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -1527,12 +1527,12 @@ class Tools extends BaseService
      * @param string $type 翻译类型（可选，默认auto）
      * @return array API 返回的 JSON 数组
      */
-    public function universalTranslate($text, $type = 'auto')
+    public function universalTranslate(string $text, string $type = 'auto'): array
     {
         $path = '/resource/v1/translate';
         $params = [
-            'text' => (string)$text,
-            'type' => (string)$type
+            'text' => $text,
+            'type' => $type
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -1543,11 +1543,11 @@ class Tools extends BaseService
      * @param string $name 历史人物姓名（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function getHistoricalFigure($name)
+    public function getHistoricalFigure(string $name): array
     {
         $path = '/resource/v1/historical/figure';
         $params = [
-            'name' => (string)$name
+            'name' => $name
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -1559,12 +1559,12 @@ class Tools extends BaseService
      * @param int $type 查询类型 0=模糊 1=精准（可选，默认0）
      * @return array API 返回的 JSON 数组
      */
-    public function garbageClassification($keyword, $type = 0)
+    public function garbageClassification(string $keyword, int $type = 0): array
     {
         $path = '/resource/v1/rubbish/query';
         $params = [
-            'keyword' => (string)$keyword,
-            'type' => (int)$type
+            'keyword' => $keyword,
+            'type' => $type
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -1578,14 +1578,14 @@ class Tools extends BaseService
      * @param string $type 输出格式 image=图片 json=base64（可选，默认image）
      * @return array API 返回的 JSON 数组
      */
-    public function createWifiQrcode($ssid, $password, $net = 1, $type = 'image')
+    public function createWifiQrcode(string $ssid, string $password, int $net = 1, string $type = 'image'): array
     {
         $path = '/resource/v1/wifi/qrcode/create';
         $params = [
-            'ssid' => (string)$ssid,
-            'password' => (string)$password,
-            'net' => (int)$net,
-            'type' => (string)$type
+            'ssid' => $ssid,
+            'password' => $password,
+            'net' => $net,
+            'type' => $type
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -1596,11 +1596,11 @@ class Tools extends BaseService
      * @param string $text 网络用语简称（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function internetSlangLookup($text)
+    public function internetSlangLookup(string $text): array
     {
         $path = '/resource/v1/net/abb';
         $params = [
-            'text' => (string)$text
+            'text' => $text
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -1613,13 +1613,13 @@ class Tools extends BaseService
      * @param int $month 存款周期（月，必填）
      * @return array API 返回的 JSON 数组
      */
-    public function bankInterestCalculator($principal, $rate, $month)
+    public function bankInterestCalculator(float $principal, float $rate, int $month): array
     {
         $path = '/resource/v1/interest/calc';
         $params = [
-            'principal' => (float)$principal,
-            'rate' => (float)$rate,
-            'month' => (int)$month
+            'principal' => $principal,
+            'rate' => $rate,
+            'month' => $month
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -1631,12 +1631,12 @@ class Tools extends BaseService
      * @param int $count 名字位数（必填，最大3）
      * @return array API 返回的 JSON 数组
      */
-    public function randomNameGenerator($first, $count)
+    public function randomNameGenerator(string $first, int $count): array
     {
         $path = '/resource/v1/create/name/rand';
         $params = [
-            'first' => (string)$first,
-            'count' => (int)$count
+            'first' => $first,
+            'count' => $count
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -1647,11 +1647,11 @@ class Tools extends BaseService
      * @param float $money 需转换的金额数值（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function rmbUppercaseConverter($money)
+    public function rmbUppercaseConverter(float $money): array
     {
         $path = '/resource/v1/chinese/capital';
         $params = [
-            'money' => (float)$money
+            'money' => $money
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -1661,7 +1661,7 @@ class Tools extends BaseService
      * 今日随机美食推荐
      * @return array API 返回的 JSON 数组
      */
-    public function whatToEatToday()
+    public function whatToEatToday(): array
     {
         $path = '/resource/v1/eat/what';
         return $this->client->execute('POST', $path);
@@ -1674,11 +1674,11 @@ class Tools extends BaseService
      * @param string $url 豆包AI分享图链接（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function doubaoImageResolver($url)
+    public function doubaoImageResolver(string $url): array
     {
         $path = '/resource/v1/parse/doubao/images';
         $params = [
-            'url' => (string)$url
+            'url' => $url
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -1689,7 +1689,7 @@ class Tools extends BaseService
      * 获取土味情话（随机生成）
      * @return array API 返回的 JSON 数组
      */
-    public function lovePickupLines()
+    public function lovePickupLines(): array
     {
         $path = '/resource/v1/love/talk';
         return $this->client->execute('POST', $path);
@@ -1701,11 +1701,11 @@ class Tools extends BaseService
      * @param string $keyword 英雄关键字（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function honorOfKingsHeroes($keyword)
+    public function honorOfKingsHeroes(string $keyword): array
     {
         $path = '/resource/v1/pvp/hero/data';
         $params = [
-            'keyword' => (string)$keyword
+            'keyword' => $keyword
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -1716,11 +1716,11 @@ class Tools extends BaseService
      * @param int $number 一千万以内正整数（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function mathFormulaGenerator($number)
+    public function mathFormulaGenerator(int $number): array
     {
         $path = '/resource/v1/complex/math/formula/generate';
         $params = [
-            'number' => (int)$number
+            'number' => $number
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -1731,12 +1731,12 @@ class Tools extends BaseService
      * @param string|null $gender 性别（男/女，可选）
      * @return array API 返回的 JSON 数组
      */
-    public function randomProfile($gender = null)
+    public function randomProfile(string $gender = null): array
     {
         $path = '/resource/v1/persona/rand';
         $params = [];
         if ($gender !== null) {
-            $params['gender'] = (string)$gender;
+            $params['gender'] = $gender;
         }
         return $this->client->execute('POST', $path, $params);
     }
@@ -1746,7 +1746,7 @@ class Tools extends BaseService
      * 随机获取抖音小姐姐视频
      * @return array API 返回的 JSON 数组
      */
-    public function randomDouyinGirls()
+    public function randomDouyinGirls(): array
     {
         $path = '/resource/v1/douyin/video/rand';
         return $this->client->execute('POST', $path);
@@ -1757,7 +1757,7 @@ class Tools extends BaseService
      * 爱情公寓经典台词（随机获取）
      * @return array API 返回的 JSON 数组
      */
-    public function loveApartmentQuotes()
+    public function loveApartmentQuotes(): array
     {
         $path = '/resource/v1/love/apartment';
         return $this->client->execute('POST', $path);
@@ -1768,7 +1768,7 @@ class Tools extends BaseService
      * 随机生成超能力信息（含能力+副作用）
      * @return array API 返回的 JSON 数组
      */
-    public function superpowerGenerator()
+    public function superpowerGenerator(): array
     {
         $path = '/resource/v1/superpower/rand';
         return $this->client->execute('POST', $path);
@@ -1782,15 +1782,15 @@ class Tools extends BaseService
      * @param string|null $description 描述内容（小于200字，可选）
      * @return array API 返回的 JSON 数组
      */
-    public function socialShareApi($title, $url, $description = null)
+    public function socialShareApi(string $title, string $url, string $description = null): array
     {
         $path = '/resource/v1/social/share';
         $params = [
-            'title' => (string)$title,
-            'url' => (string)$url
+            'title' => $title,
+            'url' => $url
         ];
         if ($description !== null) {
-            $params['description'] = (string)$description;
+            $params['description'] = $description;
         }
         return $this->client->execute('POST', $path, $params);
     }
@@ -1800,7 +1800,7 @@ class Tools extends BaseService
      * 中国历史朝代数据获取
      * @return array API 返回的 JSON 数组
      */
-    public function getChineseDynasties()
+    public function getChineseDynasties(): array
     {
         $path = '/resource/v1/get/dynasties';
         return $this->client->execute('POST', $path);
@@ -1815,17 +1815,17 @@ class Tools extends BaseService
      * @param int $page 页码，默认1（可选）
      * @return array API 返回的 JSON 数组
      */
-    public function getChineseEmperors($keyword, $dynasty = '', $page = 1)
+    public function getChineseEmperors(string $keyword, string $dynasty = '', int $page = 1): array
     {
         $path = '/resource/v1/get/emperors';
         $params = [
-            'keyword' => (string)$keyword
+            'keyword' => $keyword
         ];
         if (!empty($dynasty)) {
-            $params['dynasty'] = (string)$dynasty;
+            $params['dynasty'] = $dynasty;
         }
         if (!empty($page)) {
-            $params['page'] = (int)$page;
+            $params['page'] = $page;
         }
         return $this->client->execute('POST', $path, $params);
     }
@@ -1839,14 +1839,14 @@ class Tools extends BaseService
      * @param string $address 详细地址（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function queryExpressDeliveryRestrictions($province, $city, $area, $address)
+    public function queryExpressDeliveryRestrictions(string $province, string $city, string $area, string $address): array
     {
         $path = '/resource/v1/kuaidi/receive';
         $params = [
-            'province' => (string)$province,
-            'city' => (string)$city,
-            'area' => (string)$area,
-            'address' => (string)$address
+            'province' => $province,
+            'city' => $city,
+            'area' => $area,
+            'address' => $address
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -1861,14 +1861,14 @@ class Tools extends BaseService
      * @param int $type2 押韵方式 1双句一压2双句押韵3一三四押（可选，默认1）
      * @return array API 返回的 JSON 数组
      */
-    public function hiddenPoemGenerator($keywords, $num = 5, $type = 1, $type2 = 1)
+    public function hiddenPoemGenerator(string $keywords, int $num = 5, int $type = 1, int $type2 = 1): array
     {
         $path = '/resource/v1/acrostic/create';
         $params = [
-            'keywords' => (string)$keywords,
-            'num' => (int)$num,
-            'type' => (int)$type,
-            'type2' => (int)$type2
+            'keywords' => $keywords,
+            'num' => $num,
+            'type' => $type,
+            'type2' => $type2
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -1880,11 +1880,11 @@ class Tools extends BaseService
      * @param string $keywords 搜索关键词（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function baiduBaikeData($keywords)
+    public function baiduBaikeData(string $keywords): array
     {
         $path = '/resource/v1/baidu/baike/data';
         $params = [
-            'keywords' => (string)$keywords
+            'keywords' => $keywords
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -1895,11 +1895,11 @@ class Tools extends BaseService
      * @param string $keyword 搜索关键词（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function taobaoSuggestions($keyword)
+    public function taobaoSuggestions(string $keyword): array
     {
         $path = '/resource/v1/taobao/suggest';
         $params = [
-            'keyword' => (string)$keyword
+            'keyword' => $keyword
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -1911,11 +1911,11 @@ class Tools extends BaseService
      * @param string $surname 姓氏（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function chineseSurnamesRanking($surname)
+    public function chineseSurnamesRanking(string $surname): array
     {
         $path = '/resource/v1/surname/rank';
         $params = [
-            'surname' => (string)$surname
+            'surname' => $surname
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -1926,11 +1926,11 @@ class Tools extends BaseService
      * @param string $code 摩斯电码（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function morseDecrypt($code)
+    public function morseDecrypt(string $code): array
     {
         $path = '/resource/v1/morse/decrypt';
         $params = [
-            'code' => (string)$code
+            'code' => $code
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -1942,11 +1942,11 @@ class Tools extends BaseService
      * @param string $text 需要加密的明文（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function morseEncrypt($text)
+    public function morseEncrypt(string $text): array
     {
         $path = '/resource/v1/morse/encrypt';
         $params = [
-            'text' => (string)$text
+            'text' => $text
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -1957,11 +1957,11 @@ class Tools extends BaseService
      * @param int $number 一千万以内正整数（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function simpleMathGenerator($number)
+    public function simpleMathGenerator(int $number): array
     {
         $path = '/resource/v1/math/formula/generate';
         $params = [
-            'number' => (int)$number
+            'number' => $number
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -1973,11 +1973,11 @@ class Tools extends BaseService
      * @param string $url 视频地址URL（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function downloadTwitterVideo($url)
+    public function downloadTwitterVideo(string $url): array
     {
         $path = '/resource/v1/twitter/video/downloader';
         $params = [
-            'url' => (string)$url
+            'url' => $url
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -1988,11 +1988,11 @@ class Tools extends BaseService
      * @param string $url 短视频地址（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function videoAnalysisV2($url)
+    public function videoAnalysisV2(string $url): array
     {
         $path = '/resource/v2/video/analysis';
         $params = [
-            'url' => (string)$url
+            'url' => $url
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -2006,22 +2006,22 @@ class Tools extends BaseService
      * @param string $Image_url 身份证图片URL
      * @return array API 返回的 JSON 数组
      */
-    public function checkIdentity($idcard = '', $name = '', $image_base64 = '', $Image_url = '')
+    public function checkIdentity(string $idcard = '', string $name = '', string $image_base64 = '', string $Image_url = ''): array
     {
         $path = '/resource/v1/idcard/identity/check';
         $params = [];
 
         if (!empty($idcard)) {
-            $params['idcard'] = (string)$idcard;
+            $params['idcard'] = $idcard;
         }
         if (!empty($name)) {
-            $params['name'] = (string)$name;
+            $params['name'] = $name;
         }
         if (!empty($image_base64)) {
-            $params['image_base64'] = (string)$image_base64;
+            $params['image_base64'] = $image_base64;
         }
         if (!empty($Image_url)) {
-            $params['Image_url'] = (string)$Image_url;
+            $params['Image_url'] = $Image_url;
         }
 
         return $this->client->execute('POST', $path, $params);
@@ -2033,11 +2033,11 @@ class Tools extends BaseService
      * @param string $name 待查询姓名（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function querySameNameV2($name)
+    public function querySameNameV2(string $name): array
     {
         $path = '/resource/v2/china/same/name/query';
         $params = [
-            'name' => (string)$name
+            'name' => $name
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -2050,12 +2050,12 @@ class Tools extends BaseService
      * @param string $number 手机号码（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function verifyPhoneTwo($name, $number)
+    public function verifyPhoneTwo(string $name, string $number): array
     {
         $path = '/resource/v1/real/phone/verify/two';
         $params = [
-            'name' => (string)$name,
-            'number' => (string)$number
+            'name' => $name,
+            'number' => $number
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -2068,13 +2068,13 @@ class Tools extends BaseService
      * @param string $idcard 身份证号（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function verifyBankCardThree($name, $number, $idcard)
+    public function verifyBankCardThree(string $name, string $number, string $idcard): array
     {
         $path = '/resource/v1/bank/card/verify/three';
         $params = [
-            'name' => (string)$name,
-            'number' => (string)$number,
-            'idcard' => (string)$idcard
+            'name' => $name,
+            'number' => $number,
+            'idcard' => $idcard
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -2086,12 +2086,12 @@ class Tools extends BaseService
      * @param string $number 银行卡号（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function verifyBankCardTwo($name, $number)
+    public function verifyBankCardTwo(string $name, string $number): array
     {
         $path = '/resource/v1/bank/card/verify/two';
         $params = [
-            'name' => (string)$name,
-            'number' => (string)$number
+            'name' => $name,
+            'number' => $number
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -2102,11 +2102,11 @@ class Tools extends BaseService
      * @param string $number 手机号码（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function getMobileStatus($number)
+    public function getMobileStatus(string $number): array
     {
         $path = '/resource/v1/phone/status';
         $params = [
-            'number' => (string)$number
+            'number' => $number
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -2118,12 +2118,12 @@ class Tools extends BaseService
      * @param string $idcard 身份证号码（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function verifyIdentityTwo($name, $idcard)
+    public function verifyIdentityTwo(string $name, string $idcard): array
     {
         $path = '/resource/v1/idcard/verify/two';
         $params = [
-            'name' => (string)$name,
-            'idcard' => (string)$idcard
+            'name' => $name,
+            'idcard' => $idcard
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -2134,11 +2134,11 @@ class Tools extends BaseService
      * @param string $name 香烟名称或关键字（必填）
      * @return array API返回的JSON数组
      */
-    public function cigarettePriceChecker($name)
+    public function cigarettePriceChecker(string $name): array
     {
         $path = '/resource/v1/cigarette/price';
         $params = [
-            'name' => (string)$name
+            'name' => $name
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -2165,42 +2165,42 @@ class Tools extends BaseService
      * @return array API 返回的 JSON 数组
      */
     public function universitiesPro(
-        $name = null,
-        $page = null,
-        $location = null,
-        $nature = null,
-        $type = null,
-        $is_985 = null,
-        $is_211 = null,
-        $is_top = null,
-        $is_top_subject = null,
-        $is_independent_institutions = null,
-        $is_higher = null,
-        $is_civilian_run = null,
-        $is_accept_vocational = null,
-        $is_accept_dr = null,
-        $is_accept_master = null,
-        $is_accept_undergraduate = null
-    )
+        string $name = null,
+        string $page = null,
+        string $location = null,
+        string $nature = null,
+        string $type = null,
+        int    $is_985 = null,
+        int    $is_211 = null,
+        int    $is_top = null,
+        int    $is_top_subject = null,
+        int    $is_independent_institutions = null,
+        int    $is_higher = null,
+        int    $is_civilian_run = null,
+        int    $is_accept_vocational = null,
+        int    $is_accept_dr = null,
+        int    $is_accept_master = null,
+        int    $is_accept_undergraduate = null
+    ): array
     {
         $path = '/resource/v1/school/query/plus';
         $params = [];
-        if (!is_null($name)) $params['name'] = (string)$name;
-        if (!is_null($page)) $params['page'] = (int)$page;
-        if (!is_null($location)) $params['location'] = (string)$location;
-        if (!is_null($nature)) $params['nature'] = (string)$nature;
-        if (!is_null($type)) $params['type'] = (string)$type;
-        if (!is_null($is_985)) $params['is_985'] = (int)$is_985;
-        if (!is_null($is_211)) $params['is_211'] = (int)$is_211;
-        if (!is_null($is_top)) $params['is_top'] = (int)$is_top;
-        if (!is_null($is_top_subject)) $params['is_top_subject'] = (int)$is_top_subject;
-        if (!is_null($is_independent_institutions)) $params['is_independent_institutions'] = (int)$is_independent_institutions;
-        if (!is_null($is_higher)) $params['is_higher'] = (int)$is_higher;
-        if (!is_null($is_civilian_run)) $params['is_civilian_run'] = (int)$is_civilian_run;
-        if (!is_null($is_accept_vocational)) $params['is_accept_vocational'] = (int)$is_accept_vocational;
-        if (!is_null($is_accept_dr)) $params['is_accept_dr'] = (int)$is_accept_dr;
-        if (!is_null($is_accept_master)) $params['is_accept_master'] = (int)$is_accept_master;
-        if (!is_null($is_accept_undergraduate)) $params['is_accept_undergraduate'] = (int)$is_accept_undergraduate;
+        if (!is_null($name)) $params['name'] = $name;
+        if (!is_null($page)) $params['page'] = $page;
+        if (!is_null($location)) $params['location'] = $location;
+        if (!is_null($nature)) $params['nature'] = $nature;
+        if (!is_null($type)) $params['type'] = $type;
+        if (!is_null($is_985)) $params['is_985'] = $is_985;
+        if (!is_null($is_211)) $params['is_211'] = $is_211;
+        if (!is_null($is_top)) $params['is_top'] = $is_top;
+        if (!is_null($is_top_subject)) $params['is_top_subject'] = $is_top_subject;
+        if (!is_null($is_independent_institutions)) $params['is_independent_institutions'] = $is_independent_institutions;
+        if (!is_null($is_higher)) $params['is_higher'] = $is_higher;
+        if (!is_null($is_civilian_run)) $params['is_civilian_run'] = $is_civilian_run;
+        if (!is_null($is_accept_vocational)) $params['is_accept_vocational'] = $is_accept_vocational;
+        if (!is_null($is_accept_dr)) $params['is_accept_dr'] = $is_accept_dr;
+        if (!is_null($is_accept_master)) $params['is_accept_master'] = $is_accept_master;
+        if (!is_null($is_accept_undergraduate)) $params['is_accept_undergraduate'] = $is_accept_undergraduate;
         return $this->client->execute('POST', $path, $params);
     }
 
@@ -2210,11 +2210,11 @@ class Tools extends BaseService
      * @param string $url 小红书文章链接（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function xiaohongshuArticle($url)
+    public function xiaohongshuArticle(string $url): array
     {
         $path = '/resource/v1/red/book/detail/get';
         $params = [
-            'url' => (string)$url
+            'url' => $url
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -2224,7 +2224,7 @@ class Tools extends BaseService
      * 随机获取谜语（含谜面+谜底）
      * @return array API 返回的 JSON 数组
      */
-    public function randomRiddles()
+    public function randomRiddles(): array
     {
         $path = '/resource/v1/riddle/query';
         return $this->client->execute('POST', $path);
@@ -2236,11 +2236,11 @@ class Tools extends BaseService
      * @param string $type ip烈性
      * @return array API 返回的 JSON 数组
      */
-    public function randomIpGenerator($type)
+    public function randomIpGenerator(string $type): array
     {
         $path = '/resource/v1/random/ip';
         $params = [
-            'type' => (string)$type
+            'type' => $type
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -2250,7 +2250,7 @@ class Tools extends BaseService
      * 快乐8开奖数据查询
      * @return array API 返回的 JSON 数组
      */
-    public function happy8DrawQuery()
+    public function happy8DrawQuery(): array
     {
         $path = '/resource/v1/happy8/draw/query';
         return $this->client->execute('POST', $path, []);
@@ -2263,12 +2263,12 @@ class Tools extends BaseService
      * @param int $page 页码
      * @return array API 返回的 JSON 数组
      */
-    public function universitiesData($keyword, $page = 1)
+    public function universitiesData(string $keyword, int $page = 1): array
     {
         $path = '/resource/v1/collage/query';
         $params = [
-            'keyword' => (string)$keyword,
-            'page' => (int)$page
+            'keyword' => $keyword,
+            'page' => $page
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -2278,7 +2278,7 @@ class Tools extends BaseService
      * 豆瓣小组讨论精选内容获取（热门小组讨论列表）
      * @return array API 返回的 JSON 数组
      */
-    public function doubanGroupDiscussion()
+    public function doubanGroupDiscussion(): array
     {
         $path = '/resource/v1/douban/group/discussion';
         return $this->client->execute('POST', $path);
@@ -2289,7 +2289,7 @@ class Tools extends BaseService
      * 福彩七彩乐（七乐彩）开奖结果查询（最新一期或多期历史开奖）
      * @return array API 返回的 JSON 数组
      */
-    public function lotteryResultsQuery()
+    public function lotteryResultsQuery(): array
     {
         $path = '/resource/v1/fucai/qlc/query';
         return $this->client->execute('POST', $path);
@@ -2301,7 +2301,7 @@ class Tools extends BaseService
      * 热门加密货币交易价格获取（全球主流数字货币实时行情）
      * @return array API 返回的 JSON 数组
      */
-    public function cryptoPriceQuery()
+    public function cryptoPriceQuery(): array
     {
         $path = '/resource/v1/crypto/query';
         return $this->client->execute('POST', $path);
@@ -2312,7 +2312,7 @@ class Tools extends BaseService
      * 随机昵称获取（适用于社交账号、游戏角色）
      * @return array API返回的JSON数组，包含nickname字段
      */
-    public function nicknameGetV1()
+    public function nicknameGetV1(): array
     {
         $path = '/resource/v1/nickname/get';
         return $this->client->execute('POST', $path);
@@ -2324,7 +2324,7 @@ class Tools extends BaseService
      * 福彩双色球开奖查询（支持展示15天内历史记录）
      * @return array API返回的JSON数组，包含开奖详情
      */
-    public function lotteryDoubleColor()
+    public function lotteryDoubleColor(): array
     {
         $path = '/resource/v1/fucai/ssq/query';
         return $this->client->execute('POST', $path);
@@ -2335,7 +2335,7 @@ class Tools extends BaseService
      * 福彩3D开奖查询（支持展示15天内历史记录）
      * @return array API返回的JSON数组，包含开奖详情
      */
-    public function lottery3d()
+    public function lottery3d(): array
     {
         $path = '/resource/v1/fucai/3d/query';
         return $this->client->execute('POST', $path);
@@ -2347,11 +2347,11 @@ class Tools extends BaseService
      * @param string $url 网易文章链接（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function neteaseArticleFetch($url)
+    public function neteaseArticleFetch(string $url): array
     {
         $path = '/resource/v1/article/163/get';
         $params = [
-            'url' => (string)$url
+            'url' => $url
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -2363,12 +2363,12 @@ class Tools extends BaseService
      * @param string $id_card 身份证号码（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function idCardVerification($name, $id_card)
+    public function idCardVerification(string $name, string $id_card): array
     {
         $path = '/resource/v1/idcard/check';
         $params = [
-            'name' => (string)$name,
-            'id_card' => (string)$id_card
+            'name' => $name,
+            'id_card' => $id_card
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -2379,11 +2379,11 @@ class Tools extends BaseService
      * @param string $url 腾讯新闻链接（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function tencentNewsFetch($url)
+    public function tencentNewsFetch(string $url): array
     {
         $path = '/resource/v1/article/tencent/get';
         $params = [
-            'url' => (string)$url
+            'url' => $url
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -2394,11 +2394,11 @@ class Tools extends BaseService
      * @param string $keyword 搜索关键词
      * @return array
      */
-    public function sogouSuggestions($keyword)
+    public function sogouSuggestions(string $keyword): array
     {
         $path = '/resource/v1/sogou/keywords'; // 严格取自文档“接口地址”栏
         $params = [
-            'keyword' => (string)$keyword
+            'keyword' => $keyword
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -2411,13 +2411,13 @@ class Tools extends BaseService
      * @param string $format 输出格式: english/chinese（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function currencyConverter($amount, $currency, $format)
+    public function currencyConverter(float $amount, string $currency, string $format): array
     {
         $path = '/resource/v1/dollar/convert/text';
         $params = [
-            'amount' => (float)$amount,
-            'currency' => (string)$currency,
-            'format' => (string)$format
+            'amount' => $amount,
+            'currency' => $currency,
+            'format' => $format
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -2429,11 +2429,11 @@ class Tools extends BaseService
      * @param string $text 搜索的影视剧关键字（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function shortVideoSearch($text)
+    public function shortVideoSearch(string $text): array
     {
         $path = '/resource/v1/short/play';
         $params = [
-            'text' => (string)$text
+            'text' => $text
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -2443,7 +2443,7 @@ class Tools extends BaseService
      * 宝贝回家公益服务
      * @return array API 返回的 JSON 数组
      */
-    public function babyComeHome()
+    public function babyComeHome(): array
     {
         $path = '/resource/v1/baby/come/home';
         return $this->client->execute('POST', $path);
@@ -2455,11 +2455,11 @@ class Tools extends BaseService
      * @param string $url 要截图的网页完整地址，需带 http(s)://（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function websiteScreenshot($url)
+    public function websiteScreenshot(string $url): array
     {
         $path = '/resource/v1/website/screenshot';
         $params = [
-            'url' => (string)$url
+            'url' => $url
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -2469,7 +2469,7 @@ class Tools extends BaseService
      * KFC疯狂星期四文案，随机获取趣味段子文案
      * @return array API 返回的 JSON 数组
      */
-    public function kfcCrazyThursdayText()
+    public function kfcCrazyThursdayText(): array
     {
         $path = '/resource/v1/kfc/word';
         return $this->client->execute('POST', $path);
@@ -2480,7 +2480,7 @@ class Tools extends BaseService
      * 猫眼电影全球影视票房榜，获取全球电影实时票房排行数据
      * @return array API 返回的 JSON 数组
      */
-    public function globalMovieBoxOfficeRank()
+    public function globalMovieBoxOfficeRank(): array
     {
         $path = '/resource/v1/world/movie/top';
         return $this->client->execute('POST', $path);
@@ -2492,10 +2492,39 @@ class Tools extends BaseService
      * 唱鸭随机点歌服务，随机返回歌曲、歌词与播放链接
      * @return array API 返回的 JSON 数组
      */
-    public function singduckRandomSong()
+    public function singduckRandomSong(): array
     {
         $path = '/resource/v1/sing/duck/music';
         return $this->client->execute('POST', $path);
+    }
+
+    /**
+     * https://api.istero.com/service/doc/weirdo-words-random
+     * 奇葩语录随机获取
+     * @return array API 返回的 JSON 数组
+     */
+    public function weirdoWordsRandom(): array
+    {
+        $path = '/resource/v1/weirdo/words';
+        return $this->client->execute('POST', $path);
+    }
+
+    /**
+     * https://api.istero.com/service/doc/driver-license-exam-question-bank
+     * 驾考题库搜索服务（科目一 / 科目四）
+     *
+     * @param string $keyword 搜索关键词（必填）
+     * @param int $page 页数（可选，默认 1）
+     * @return array API 返回的 JSON 数组
+     */
+    public function driverExamBank(string $keyword, int $page): array
+    {
+        $params = [
+            'keyword' => $keyword,
+            'page' => $page,
+        ];
+        $path = '/resource/v1/drving/exam/bank';
+        return $this->client->execute('POST', $path, $params);
     }
 
 }

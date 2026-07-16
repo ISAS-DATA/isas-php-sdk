@@ -22,19 +22,19 @@ class Develop extends BaseService
      * @param string $namespace 命名空间UUID（V3/V5生效，可选）
      * @return array API 返回的 JSON 数组
      */
-    public function UuidGenerator($version = 1, $name = '', $namespace = '')
+    public function UuidGenerator(int $version = 1, string $name = '', string $namespace = ''): array
     {
         $path = '/resource/v1/uuid/generate';
         $params = [];
 
         if (!empty($version)) {
-            $params['version'] = (int)$version;
+            $params['version'] = $version;
         }
         if (!empty($name)) {
-            $params['name'] = (string)$name;
+            $params['name'] = $name;
         }
         if (!empty($namespace)) {
-            $params['namespace'] = (string)$namespace;
+            $params['namespace'] = $namespace;
         }
 
         return $this->client->execute('POST', $path, $params);
@@ -46,11 +46,11 @@ class Develop extends BaseService
      * @param int $isid 起零ISID（个人中心获取），必填
      * @return array API 返回的 JSON 数组
      */
-    public function isasUserInfo($isid)
+    public function isasUserInfo(int $isid): array
     {
         $path = '/resource/v1/isas/mine/information';
         $params = [
-            'isid' => (int)$isid
+            'isid' => $isid
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -62,12 +62,12 @@ class Develop extends BaseService
      * @param int $type 1中文转Unicode 2Unicode转中文
      * @return array API 返回的 JSON 数组
      */
-    public function chineseUnicodeConverter($text, $type)
+    public function chineseUnicodeConverter(string $text, int $type): array
     {
         $path = '/resource/v1/unicode/convert/chinese';
         $params = [
-            'text' => (string)$text,
-            'type' => (int)$type
+            'text' => $text,
+            'type' => $type
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -81,13 +81,13 @@ class Develop extends BaseService
      * @param string $encode_type 编码类型：hex / dec，默认 hex
      * @return array API 返回的 JSON 数组
      */
-    public function utf8ZhConvert($content, $type = 'chinese_to_utf8', $encode_type = 'hex')
+    public function utf8ZhConvert(string $content, string $type = 'chinese_to_utf8', string $encode_type = 'hex'): array
     {
         $path = '/resource/v1/convert/utf8-chinese';
         $params = [
-            'content' => (string)$content,
-            'type' => (string)$type,
-            'encode_type' => (string)$encode_type
+            'content' => $content,
+            'type' => $type,
+            'encode_type' => $encode_type
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -99,11 +99,11 @@ class Develop extends BaseService
      * @param string $txt TXT 格式 sitemap 文件的 URL 地址（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function sitemapTxtToXml($txt)
+    public function sitemapTxtToXml(string $txt): array
     {
         $path = '/resource/v1/sitemap/txt/to/xml';
         $params = [
-            'txt' => (string)$txt
+            'txt' => $txt
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -114,11 +114,11 @@ class Develop extends BaseService
      * @param string $url RSS 源地址（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function rssToJson($url)
+    public function rssToJson(string $url): array
     {
         $path = '/resource/v1/rss/to/json';
         $params = [
-            'url' => (string)$url
+            'url' => $url
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -129,11 +129,11 @@ class Develop extends BaseService
      * @param string $xml 需要转换的 XML 字符串（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function xmlToJsonConverter($xml)
+    public function xmlToJsonConverter(string $xml): array
     {
         $path = '/resource/v1/xml/to/json';
         $params = [
-            'xml' => (string)$xml
+            'xml' => $xml
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -145,11 +145,11 @@ class Develop extends BaseService
      * @param string $type 设备类型：desktop 桌面 | mobile 移动，默认 desktop
      * @return array API 返回的 JSON 数组
      */
-    public function randomUseragent($type = 'desktop')
+    public function randomUseragent(string $type = 'desktop'): array
     {
         $path = '/resource/v1/user/agent/generate';
         $params = [
-            'type' => (string)$type
+            'type' => $type
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -160,7 +160,7 @@ class Develop extends BaseService
      * @param string $json 待转换JSON文本
      * @return array API 返回的 JSON 数组
      */
-    public function jsonToYaml(string $json)
+    public function jsonToYaml(string $json): array
     {
         $path = '/resource/v1/json/to/yaml';
         $params = [
@@ -184,23 +184,23 @@ class Develop extends BaseService
      * @param int $port 端口号，默认25，可选465（可选）
      * @return array API 返回的 JSON 数组
      */
-    public function sendSmtpEmail($host, $username, $password, $from_address, $from_name, $subject, $body, $to_address, $encryption = '', $port = 25)
+    public function sendSmtpEmail(string $host, string $username, string $password, string $from_address, string $from_name, string $subject, string $body, string $to_address, string $encryption = '', int $port = 25): array
     {
         $path = '/resource/v1/email/send';
         $params = [
-            'host' => (string)$host,
-            'username' => (string)$username,
-            'password' => (string)$password,
-            'from_address' => (string)$from_address,
-            'from_name' => (string)$from_name,
-            'subject' => (string)$subject,
-            'body' => (string)$body,
-            'to_address' => (string)$to_address,
-            'port' => (int)$port
+            'host' => $host,
+            'username' => $username,
+            'password' => $password,
+            'from_address' => $from_address,
+            'from_name' => $from_name,
+            'subject' => $subject,
+            'body' => $body,
+            'to_address' => $to_address,
+            'port' => $port
         ];
 
         if (!empty($encryption)) {
-            $params['encryption'] = (string)$encryption;
+            $params['encryption'] = $encryption;
         }
 
         return $this->client->execute('POST', $path, $params);
@@ -213,11 +213,11 @@ class Develop extends BaseService
      * @param string $ip 待查询的IP地址（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function ipLocationCheck($ip)
+    public function ipLocationCheck(string $ip): array
     {
         $path = '/resource/v2/ip/query';
         $params = [
-            'ip' => (string)$ip
+            'ip' => $ip
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -231,16 +231,16 @@ class Develop extends BaseService
      * @param string $algorithm 加密方式，md5/crypt/sha1（可选）
      * @return array API 返回的 JSON 数组
      */
-    public function generateHtpasswd($username, $password, $algorithm = '')
+    public function generateHtpasswd(string $username, string $password, string $algorithm = ''): array
     {
         $path = '/resource/v1/htpasswd/generate';
         $params = [
-            'username' => (string)$username,
-            'password' => (string)$password
+            'username' => $username,
+            'password' => $password
         ];
 
         if (!empty($algorithm)) {
-            $params['algorithm'] = (string)$algorithm;
+            $params['algorithm'] = $algorithm;
         }
 
         return $this->client->execute('POST', $path, $params);
@@ -252,11 +252,11 @@ class Develop extends BaseService
      * @param string $number 待转换的数值字符串（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function baseConverter($number)
+    public function baseConverter(string $number): array
     {
         $path = '/resource/v1/smart/batch/converter';
         $params = [
-            'number' => (string)$number
+            'number' => $number
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -267,11 +267,11 @@ class Develop extends BaseService
      * @param string $ascii ASCII码串（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function asciiConverter($ascii)
+    public function asciiConverter(string $ascii): array
     {
         $path = '/resource/v1/ascii/to/string';
         $params = [
-            'ascii' => (string)$ascii
+            'ascii' => $ascii
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -282,7 +282,7 @@ class Develop extends BaseService
      * @param string $content 待转换文本内容
      * @return array API 返回的 JSON 数组
      */
-    public function stringToAscii(string $content)
+    public function stringToAscii(string $content): array
     {
         $path = '/resource/v1/string/to/ascii';
         $params = [
@@ -297,11 +297,11 @@ class Develop extends BaseService
      * @param string $url 要测试的目标网址
      * @return array API 返回的 JSON 数组
      */
-    public function pingTestOnline($url)
+    public function pingTestOnline(string $url): array
     {
         $path = '/resource/v1/ping/test';
         $params = [
-            'url' => (string)$url
+            'url' => $url
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -312,11 +312,11 @@ class Develop extends BaseService
      * @param string $data 需要加密的数据（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function md4Encrypt($data)
+    public function md4Encrypt(string $data): array
     {
         $path = '/resource/v1/md4/encryption';
         $params = [
-            'data' => (string)$data
+            'data' => $data
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -327,11 +327,11 @@ class Develop extends BaseService
      * @param string $email 待编码邮箱地址（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function emailEncoder($email)
+    public function emailEncoder(string $email): array
     {
         $path = '/resource/v1/email/encode';
         $params = [
-            'email' => (string)$email
+            'email' => $email
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -342,7 +342,7 @@ class Develop extends BaseService
      * @param string $yaml 待转换的 YAML 文本内容（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function yamlToJson(string $yaml)
+    public function yamlToJson(string $yaml): array
     {
         $path = '/resource/v1/yaml/to/json';
         $params = [
@@ -357,7 +357,7 @@ class Develop extends BaseService
      * @param int $long 整型IP数值
      * @return array API 返回的 JSON 数组
      */
-    public function numberToIp(int $long)
+    public function numberToIp(int $long): array
     {
         $path = '/resource/v1/long/to/ip';
         $params = [
@@ -372,7 +372,7 @@ class Develop extends BaseService
      * @param string $ip 合法IP地址（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function ipToNumber(string $ip)
+    public function ipToNumber(string $ip): array
     {
         $path = '/resource/v1/ip/to/long';
         $params = [
@@ -388,12 +388,12 @@ class Develop extends BaseService
      * @param string $type 校验类型，默认 decimal
      * @return array API 返回的 JSON 数组
      */
-    public function baseValidator($text, $type = 'decimal')
+    public function baseValidator(string $text, string $type = 'decimal'): array
     {
         $path = '/resource/v1/check/number/format';
         $params = [
-            'text' => (string)$text,
-            'type' => (string)$type
+            'text' => $text,
+            'type' => $type
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -403,19 +403,19 @@ class Develop extends BaseService
      * AuthCode加密生成服务
      * @param string $string 待加密字符（必填）
      * @param string $key 加密密钥（必填）
-     * @param int $expiry 过期时间，单位秒（可选）
+     * @param int|null $expiry 过期时间，单位秒（可选）
      * @return array API 返回的 JSON 数组
      */
-    public function authCodeEncode($string, $key, $expiry = null)
+    public function authCodeEncode(string $string, string $key, int $expiry = null): array
     {
         $path = '/resource/v1/auth/code/encode';
         $params = [
-            'string' => (string)$string,
-            'key' => (string)$key
+            'string' => $string,
+            'key' => $key
         ];
 
         if ($expiry !== null) {
-            $params['expiry'] = (int)$expiry;
+            $params['expiry'] = $expiry;
         }
 
         return $this->client->execute('POST', $path, $params);
@@ -428,7 +428,7 @@ class Develop extends BaseService
      * @param string $key 解密密钥
      * @return array API 返回的 JSON 数组
      */
-    public function authcodeDecrypt(string $string, string $key)
+    public function authcodeDecrypt(string $string, string $key): array
     {
         $path = '/resource/v1/auth/code/decode';
         $params = [
@@ -452,7 +452,7 @@ class Develop extends BaseService
         string $secretKey,
         string $url,
         string $type = 'purge_url'
-    )
+    ): array
     {
         $path = '/resource/v1/tencent/eo/fresh';
         $params = [
@@ -474,14 +474,14 @@ class Develop extends BaseService
      * @param string $endTime 结束时间（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function getTencentCloudEoRecords($secretId, $secretKey, $startTime, $endTime)
+    public function getTencentCloudEoRecords(string $secretId, string $secretKey, string $startTime, string $endTime): array
     {
         $path = '/resource/v1/tencent/eo/history/fresh';
         $params = [
-            'secretId' => (string)$secretId,
-            'secretKey' => (string)$secretKey,
-            'startTime' => (string)$startTime,
-            'endTime' => (string)$endTime
+            'secretId' => $secretId,
+            'secretKey' => $secretKey,
+            'startTime' => $startTime,
+            'endTime' => $endTime
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -493,12 +493,12 @@ class Develop extends BaseService
      * @param int $type 1=编码，2=解码（默认1）
      * @return array API 返回的 JSON 数组
      */
-    public function urlEncoderDecoder($text, $type = 1)
+    public function urlEncoderDecoder(string $text, int $type = 1): array
     {
         $path = '/resource/v1/url/encode/data';
         $params = [
-            'text' => (string)$text,
-            'type' => (int)$type
+            'text' => $text,
+            'type' => $type
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -509,11 +509,11 @@ class Develop extends BaseService
      * @param string $text 待解码的URL编码字符串
      * @return array API 返回的 JSON 数组
      */
-    public function urlDecoder($text)
+    public function urlDecoder(string $text): array
     {
         $path = '/resource/v1/url/decode/data';
         $params = [
-            'text' => (string)$text
+            'text' => $text
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -528,14 +528,14 @@ class Develop extends BaseService
      * @param string $mode 解密模式
      * @return array API 返回的 JSON 数组
      */
-    public function aesDecrypt($data, $key, $iv, $mode)
+    public function aesDecrypt(string $data, string $key, string $iv, string $mode): array
     {
         $path = '/resource/v1/aes/decrypt';
         $params = [
-            'data' => (string)$data,
-            'key' => (string)$key,
-            'iv' => (string)$iv,
-            'mode' => (string)$mode
+            'data' => $data,
+            'key' => $key,
+            'iv' => $iv,
+            'mode' => $mode
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -550,14 +550,14 @@ class Develop extends BaseService
      * @param string $mode 加密模式
      * @return array API 返回的 JSON 数组
      */
-    public function aesEncrypt($data, $key, $iv, $mode)
+    public function aesEncrypt(string $data, string $key, string $iv, string $mode): array
     {
         $path = '/resource/v1/aes/encrypt';
         $params = [
-            'data' => (string)$data,
-            'key' => (string)$key,
-            'iv' => (string)$iv,
-            'mode' => (string)$mode
+            'data' => $data,
+            'key' => $key,
+            'iv' => $iv,
+            'mode' => $mode
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -571,34 +571,34 @@ class Develop extends BaseService
      * @param string $end 自定义结尾（可选）
      * @param int $num 生成数量，默认1（可选）
      * @param string $format 输出格式，json/text（可选）
-     * @param int $export 是否导出Excel（可选）
+     * @param int|null $export 是否导出Excel（可选）
      * @return array API 返回的 JSON 数组
      */
-    public function createUniqueId($type = 0, $length = 8, $start = '', $end = '', $num = 1, $format = 'json', $export = null)
+    public function createUniqueId(int $type = 0, int $length = 8, string $start = '', string $end = '', int $num = 1, string $format = 'json', int $export = null): array
     {
         $path = '/resource/v1/id/create';
         $params = [];
 
         if (!empty($type)) {
-            $params['type'] = (int)$type;
+            $params['type'] = $type;
         }
         if (!empty($length)) {
-            $params['length'] = (int)$length;
+            $params['length'] = $length;
         }
         if (!empty($start)) {
-            $params['start'] = (string)$start;
+            $params['start'] = $start;
         }
         if (!empty($end)) {
-            $params['end'] = (string)$end;
+            $params['end'] = $end;
         }
         if (!empty($num)) {
-            $params['num'] = (int)$num;
+            $params['num'] = $num;
         }
         if (!empty($format)) {
-            $params['format'] = (string)$format;
+            $params['format'] = $format;
         }
         if ($export !== null) {
-            $params['export'] = (int)$export;
+            $params['export'] = $export;
         }
 
         return $this->client->execute('POST', $path, $params);
@@ -611,12 +611,12 @@ class Develop extends BaseService
      * @param int $type 验证类型 0:数字1:汉字2:英文3:E-mail4:QQ5:手机号6:身份证7:网址URL8:JSON9:IP10:时间11:顶级域名12:金额13:小数14：日期15:Unicode
      * @return array API 返回的 JSON 数组
      */
-    public function multiDataValidator($text, $type)
+    public function multiDataValidator(string $text, int $type): array
     {
         $path = '/resource/v1/character/check';
         $params = [
-            'text' => (string)$text,
-            'type' => (int)$type
+            'text' => $text,
+            'type' => $type
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -627,11 +627,11 @@ class Develop extends BaseService
      * @param string $color 颜色代码（HEX/RGB/RGBA/HSL/HSLA）
      * @return array API 返回的 JSON 数组
      */
-    public function colorCodeConverter($color)
+    public function colorCodeConverter(string $color): array
     {
         $path = '/resource/v1/color/convert';
         $params = [
-            'color' => (string)$color
+            'color' => $color
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -642,11 +642,11 @@ class Develop extends BaseService
      * @param string $text 待去重的文本内容
      * @return array API 返回的 JSON 数组
      */
-    public function stringDeduplicator($text)
+    public function stringDeduplicator(string $text): array
     {
         $path = '/resource/v1/duplicate/removal';
         $params = [
-            'text' => (string)$text
+            'text' => $text
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -656,7 +656,7 @@ class Develop extends BaseService
      * GUID 全局唯一标识符生成
      * @return array API 返回的 JSON 数组
      */
-    public function guidGenerator()
+    public function guidGenerator(): array
     {
         $path = '/resource/v1/guid/generate';
         return $this->client->execute('POST', $path);
@@ -668,11 +668,11 @@ class Develop extends BaseService
      * @param string $data 浏览器UA信息字符串
      * @return array API 返回的 JSON 数组
      */
-    public function userAgentParser($data)
+    public function userAgentParser(string $data): array
     {
         $path = '/resource/v1/parse/user/agent';
         $params = [
-            'data' => (string)$data
+            'data' => $data
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -683,11 +683,11 @@ class Develop extends BaseService
      * @param string $expression Cron 表达式
      * @return array API 返回的 JSON 数组
      */
-    public function cronExpressionChecker($expression)
+    public function cronExpressionChecker(string $expression): array
     {
         $path = '/resource/v1/cron/query';
         $params = [
-            'expression' => (string)$expression
+            'expression' => $expression
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -701,13 +701,13 @@ class Develop extends BaseService
      * @param string $date2 结束时间（可选）
      * @return array API 返回的 JSON 数组
      */
-    public function timeDifferenceCalculator($type, $date, $date2 = '')
+    public function timeDifferenceCalculator(int $type, string $date, string $date2 = ''): array
     {
         $path = '/resource/v1/date/countdown';
         $params = [
-            'type' => (int)$type,
-            'date' => (string)$date,
-            'date2' => (string)$date2
+            'type' => $type,
+            'date' => $date,
+            'date2' => $date2
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -718,11 +718,11 @@ class Develop extends BaseService
      * @param string $code Linux 指令名称
      * @return array API 返回的 JSON 数组
      */
-    public function linuxCommandQuery($code)
+    public function linuxCommandQuery(string $code): array
     {
         $path = '/resource/v1/linux/code/query';
         $params = [
-            'code' => (string)$code
+            'code' => $code
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -735,12 +735,12 @@ class Develop extends BaseService
      * @param int $type 1=转时间 2=转时间戳
      * @return array API 返回的 JSON 数组
      */
-    public function unixTimestampConverter($time, $type = 1)
+    public function unixTimestampConverter(string $time, int $type = 1): array
     {
         $path = '/resource/v1/unixtime/convert';
         $params = [
-            'time' => (string)$time,
-            'type' => (int)$type
+            'time' => $time,
+            'type' => $type
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -749,15 +749,15 @@ class Develop extends BaseService
      * https://api.istero.com/service/doc/universal-data-cryptor
      * 多类型通用数据加密解密
      * @param string $text 待处理文本（必填）
-     * @param string|int $type 加密类型 1-8（可选，默认1）
+     * @param int $type 加密类型 1-8（可选，默认1）
      * @return array API 返回的 JSON 数组
      */
-    public function universalDataCryptor($text, $type = 1)
+    public function universalDataCryptor(string $text, int $type = 1): array
     {
         $path = '/resource/v1/data/encrypt';
         $params = [
-            'text' => (string)$text,
-            'type' => (string)$type
+            'text' => $text,
+            'type' => $type
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -766,13 +766,13 @@ class Develop extends BaseService
      * https://api.istero.com/service/doc/json-to-xml
      * JSON结构快捷转XML结构（需encodeURIComponent编码）
      * @param string $json 待转换的JSON字符串（会自动进行encodeURIComponent编码）
-     * @return string API返回的XML内容
+     * @return array
      */
-    public function jsonToXml($json)
+    public function jsonToXml(string $json): array
     {
         $path = '/resource/v1/json/to/xml';
         $params = [
-            'json' => (string)$json // 注意：底层需确保此值被encodeURIComponent编码
+            'json' => $json // 注意：底层需确保此值被encodeURIComponent编码
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -783,11 +783,11 @@ class Develop extends BaseService
      * @param string $text 需要加密的内容（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function md5Encrypt($text)
+    public function md5Encrypt(string $text): array
     {
         $path = '/resource/v1/md5/encode/data';
         $params = [
-            'text' => (string)$text
+            'text' => $text
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -803,16 +803,16 @@ class Develop extends BaseService
      * @param string $email 邮箱（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function csrGenerator($organizationName, $organizationalUnitName, $province, $city, $domain, $email)
+    public function csrGenerator(string $organizationName, string $organizationalUnitName, string $province, string $city, string $domain, string $email): array
     {
         $path = '/resource/v1/csr/create';
         $params = [
-            'organizationName' => (string)$organizationName,
-            'organizationalUnitName' => (string)$organizationalUnitName,
-            'province' => (string)$province,
-            'city' => (string)$city,
-            'domain' => (string)$domain,
-            'email' => (string)$email
+            'organizationName' => $organizationName,
+            'organizationalUnitName' => $organizationalUnitName,
+            'province' => $province,
+            'city' => $city,
+            'domain' => $domain,
+            'email' => $email
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -823,7 +823,7 @@ class Develop extends BaseService
      * 安全获取来访者合法信息（IP、地理位置、浏览器、系统、设备）
      * @return array API 返回的 JSON 数组
      */
-    public function visitorInfoChecker()
+    public function visitorInfoChecker(): array
     {
         $path = '/resource/v1/visitor/information';
         return $this->client->execute('POST', $path);
@@ -834,7 +834,7 @@ class Develop extends BaseService
      * Packagist软件包搜索（官方版）
      * @return array API 返回的 JSON 数组
      */
-    public function packagistSearch()
+    public function packagistSearch(): array
     {
         $path = '/resource/v1/packagist/search';
         return $this->client->execute('POST', $path);
@@ -845,7 +845,7 @@ class Develop extends BaseService
      * Packagist软件包搜索（镜像版）
      * @return array API 返回的 JSON 数组
      */
-    public function IsasPackagistSearch()
+    public function IsasPackagistSearch(): array
     {
         $path = '/resource/v1/packagist/isas/search';
         return $this->client->execute('POST', $path);

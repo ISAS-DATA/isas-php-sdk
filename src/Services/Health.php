@@ -7,6 +7,7 @@
  * @license MIT License
  * @link https://github.com/ISAS-DATA/isas-php-sdk
  */
+
 namespace Isas\Sdk\Services;
 
 use Isas\Sdk\BaseService;
@@ -21,13 +22,13 @@ class Health extends BaseService
      * @param int $period_length 经期持续天数
      * @return array API 返回的 JSON 数组
      */
-    public function safePeriodCalculator($period_date, $cycle_length, $period_length)
+    public function safePeriodCalculator(string $period_date, int $cycle_length, int $period_length): array
     {
         $path = '/resource/v1/safe/period/calc';
         $params = [
-            'period_date' => (string)$period_date,
-            'cycle_length' => (int)$cycle_length,
-            'period_length' => (int)$period_length
+            'period_date' => $period_date,
+            'cycle_length' => $cycle_length,
+            'period_length' => $period_length
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -40,13 +41,13 @@ class Health extends BaseService
      * @param string $weight 体重（kg）
      * @return array API 返回的 JSON 数组
      */
-    public function idealWeightCalculator($gender, $height, $weight)
+    public function idealWeightCalculator(int $gender, string $height, string $weight): array
     {
         $path = '/resource/v1/calculate/standard/weight';
         $params = [
-            'gender' => (int)$gender,
-            'height' => (string)$height,
-            'weight' => (string)$weight
+            'gender' => $gender,
+            'height' => $height,
+            'weight' => $weight
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -57,11 +58,11 @@ class Health extends BaseService
      * @param string $food 食物关键字
      * @return array API 返回的 JSON 数组
      */
-    public function foodConflictChecker($food)
+    public function foodConflictChecker(string $food): array
     {
         $path = '/resource/v1/food/combinations';
         $params = [
-            'food' => (string)$food
+            'food' => $food
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -76,15 +77,15 @@ class Health extends BaseService
      * @param string $active 运动量系数
      * @return array API 返回的 JSON 数组
      */
-    public function tdeeQuery($age, $gender, $weight, $height, $active)
+    public function tdeeQuery(int $age, int $gender, int $weight, int $height, string $active): array
     {
         $path = '/resource/v1/tdee/query';
         $params = [
-            'age' => (int)$age,
-            'gender' => (int)$gender,
-            'weight' => (int)$weight,
-            'height' => (int)$height,
-            'active' => (string)$active
+            'age' => $age,
+            'gender' => $gender,
+            'weight' => $weight,
+            'height' => $height,
+            'active' => $active
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -96,12 +97,12 @@ class Health extends BaseService
      * @param int $waist 腰围 cm
      * @return array API 返回的 JSON 数组
      */
-    public function whtrCalc($height, $waist)
+    public function whtrCalc(int $height, int $waist): array
     {
         $path = '/resource/v1/body/wthr/calc';
         $params = [
-            'height' => (int)$height,
-            'waist' => (int)$waist
+            'height' => $height,
+            'waist' => $waist
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -115,14 +116,14 @@ class Health extends BaseService
      * @param int $height 身高 cm
      * @return array API 返回的 JSON 数组
      */
-    public function bmrQuery($age, $gender, $weight, $height)
+    public function bmrQuery(int $age, int $gender, int $weight, int $height): array
     {
         $path = '/resource/v1/bmr/query';
         $params = [
-            'age' => (int)$age,
-            'gender' => (int)$gender,
-            'weight' => (int)$weight,
-            'height' => (int)$height
+            'age' => $age,
+            'gender' => $gender,
+            'weight' => $weight,
+            'height' => $height
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -134,12 +135,12 @@ class Health extends BaseService
      * @param string $mother 母亲血型
      * @return array API 返回的 JSON 数组
      */
-    public function childBloodtypePredictor($father, $mother)
+    public function childBloodtypePredictor(string $father, string $mother): array
     {
         $path = '/resource/v1/blood/query';
         $params = [
-            'father' => (string)$father,
-            'mother' => (string)$mother
+            'father' => $father,
+            'mother' => $mother
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -151,12 +152,12 @@ class Health extends BaseService
      * @param int $page 分页页码
      * @return array API 返回的 JSON 数组
      */
-    public function foodCaloriesQuery($food, $page = 1)
+    public function foodCaloriesQuery(string $food, int $page = 1): array
     {
         $path = '/resource/v1/food/calorie/query';
         $params = [
-            'food' => (string)$food,
-            'page' => (int)$page
+            'food' => $food,
+            'page' => $page
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -169,13 +170,13 @@ class Health extends BaseService
      * @param int $gender 孩子性别 1男 2女
      * @return array API 返回的 JSON 数组
      */
-    public function childHeightPredictor($father_height, $mother_height, $gender)
+    public function childHeightPredictor(string $father_height, string $mother_height, int $gender): array
     {
         $path = '/resource/v1/child/height/predict';
         $params = [
-            'father_height' => (string)$father_height,
-            'mother_height' => (string)$mother_height,
-            'gender' => (int)$gender
+            'father_height' => $father_height,
+            'mother_height' => $mother_height,
+            'gender' => $gender
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -189,14 +190,14 @@ class Health extends BaseService
      * @param int $height 身高
      * @return array API 返回的 JSON 数组
      */
-    public function bmiQuery($sex, $age, $weight, $height)
+    public function bmiQuery(string $sex, int $age, int $weight, int $height): array
     {
         $path = '/resource/v1/bmi/query';
         $params = [
-            'sex' => (string)$sex,
-            'age' => (int)$age,
-            'weight' => (int)$weight,
-            'height' => (int)$height
+            'sex' => $sex,
+            'age' => $age,
+            'weight' => $weight,
+            'height' => $height
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -210,14 +211,14 @@ class Health extends BaseService
      * @param int $height 身高 cm
      * @return array API 返回的 JSON 数组
      */
-    public function bfpQuery($gender, $age, $weight, $height)
+    public function bfpQuery(int $gender, int $age, int $weight, int $height): array
     {
         $path = '/resource/v1/bfp/query';
         $params = [
-            'gender' => (int)$gender,
-            'age' => (int)$age,
-            'weight' => (int)$weight,
-            'height' => (int)$height
+            'gender' => $gender,
+            'age' => $age,
+            'weight' => $weight,
+            'height' => $height
         ];
         return $this->client->execute('POST', $path, $params);
     }

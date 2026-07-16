@@ -7,6 +7,7 @@
  * @license MIT License
  * @link https://github.com/ISAS-DATA/isas-php-sdk
  */
+
 namespace Isas\Sdk\Services;
 
 use Isas\Sdk\BaseService;
@@ -19,11 +20,11 @@ class Ai extends BaseService
      * @param string $text 对话内容（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function doubaoAiPro256k($text)
+    public function doubaoAiPro256k(string $text): array
     {
         $path = '/resource/v1/ai/doubao/pro/256k';
         $params = [
-            'text' => (string)$text
+            'text' => $text
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -34,11 +35,11 @@ class Ai extends BaseService
      * @param string $text 对话内容（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function doubaoAiPro32k($text)
+    public function doubaoAiPro32k(string $text): array
     {
         $path = '/resource/v1/ai/doubao/pro/32k';
         $params = [
-            'text' => (string)$text
+            'text' => $text
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -49,11 +50,11 @@ class Ai extends BaseService
      * @param string $text 对话内容（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function doubaoAi15Pro32k($text)
+    public function doubaoAi15Pro32k(string $text): array
     {
         $path = '/resource/v1/ai/doubao/1_5/pro';
         $params = [
-            'text' => (string)$text
+            'text' => $text
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -65,11 +66,11 @@ class Ai extends BaseService
      * @param string $dict 词典类型：small（默认，小词典）| big（大词典，仅 SVIP 可用）
      * @return array API 返回的 JSON 数组
      */
-    public function chineseTextSegmenter($text, $dict = 'small')
+    public function chineseTextSegmenter(string $text, string $dict = 'small')
     {
         $path = '/resource/v1/chinese/smart/segment';
         $params = [
-            'text' => (string)$text,
+            'text' => $text,
             'dict' => in_array($dict, ['small', 'big']) ? $dict : 'small'
         ];
         return $this->client->execute('POST', $path, $params);
@@ -81,11 +82,11 @@ class Ai extends BaseService
      * @param string $address 完整收货地址文本（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function aiAddressRecognizerV2($address)
+    public function aiAddressRecognizerV2(string $address): array
     {
         $path = '/resource/v2/parse/address';
         $params = [
-            'address' => (string)$address
+            'address' => $address
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -97,42 +98,12 @@ class Ai extends BaseService
      * @param string $audioUrl 音频地址（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function tongyiAudioModel($text, $audioUrl)
+    public function tongyiAudioModel(string $text, string $audioUrl): array
     {
         $path = '/resource/v1/tongyi/ai/autio/turbo';
         $params = [
-            'text' => (string)$text,
-            'audioUrl' => (string)$audioUrl
-        ];
-        return $this->client->execute('POST', $path, $params);
-    }
-
-    /**
-     * https://api.istero.com/service/doc/deepseek-r1-full
-     * DeepSeek-R1 满血版大语言模型对话接口
-     * @param string $text 对话内容（必填）
-     * @return array API 返回的 JSON 数组
-     */
-    public function deepseekR1Full($text)
-    {
-        $path = '/resource/v1/deepseek/r1';
-        $params = [
-            'text' => (string)$text
-        ];
-        return $this->client->execute('POST', $path, $params);
-    }
-
-    /**
-     * https://api.istero.com/service/doc/deepseek-ai-v3
-     * DeepSeek AI V3大模型对话接口
-     * @param string $text 对话内容（必填）
-     * @return array API 返回的 JSON 数组
-     */
-    public function deepseekAiV3($text)
-    {
-        $path = '/resource/v1/deepseek/v3';
-        $params = [
-            'text' => (string)$text
+            'text' => $text,
+            'audioUrl' => $audioUrl
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -143,11 +114,11 @@ class Ai extends BaseService
      * @param string $text 对话内容（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function deepseekR1Llama8b($text)
+    public function deepseekR1Llama8b(string $text): array
     {
         $path = '/resource/v1/deepseek/r1/llama/8b';
         $params = [
-            'text' => (string)$text
+            'text' => $text
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -158,11 +129,11 @@ class Ai extends BaseService
      * @param string $text 对话内容（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function tongyiQwq32b($text)
+    public function tongyiQwq32b(string $text): array
     {
         $path = '/resource/v1/qwq/32b/preview/tongyi/ai';
         $params = [
-            'text' => (string)$text
+            'text' => $text
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -173,11 +144,11 @@ class Ai extends BaseService
      * @param string $text 对话内容（必填，100个tokens）
      * @return array API 返回的 JSON 数组
      */
-    public function tongyiVlPlus($text)
+    public function tongyiVlPlus(string $text): array
     {
         $path = '/resource/v1/vl/plus/tongyi/ai';
         $params = [
-            'text' => (string)$text
+            'text' => $text
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -188,11 +159,11 @@ class Ai extends BaseService
      * @param string $image 图片URL地址（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function tongyiQwenOcr($image)
+    public function tongyiQwenOcr(string $image): array
     {
         $path = '/resource/v1/tongyi/ocr/vl';
         $params = [
-            'image' => (string)$image
+            'image' => $image
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -204,11 +175,11 @@ class Ai extends BaseService
      * @param string $text 对话内容（必填，100个tokens）
      * @return array API 返回的 JSON 数组
      */
-    public function tongyiQwenMax($text)
+    public function tongyiQwenMax(string $text): array
     {
         $path = '/resource/v1/max/tongyi/ai';
         $params = [
-            'text' => (string)$text
+            'text' => $text
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -219,11 +190,11 @@ class Ai extends BaseService
      * @param string $text 对话内容（必填，150个tokens）
      * @return array API 返回的 JSON 数组
      */
-    public function tongyiQwen37_plus($text)
+    public function tongyiQwen37_plus(string $text): array
     {
         $path = '/resource/v1/ai/tongyi/conversation';
         $params = [
-            'text' => (string)$text
+            'text' => $text
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -234,11 +205,11 @@ class Ai extends BaseService
      * @param string $url 图片URL地址（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function aiNsfwDetector($url)
+    public function aiNsfwDetector(string $url): array
     {
         $path = '/resource/v1/yellow/check';
         $params = [
-            'url' => (string)$url
+            'url' => $url
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -249,11 +220,11 @@ class Ai extends BaseService
      * @param string $text 对话内容（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function aiTuringBot($text)
+    public function aiTuringBot(string $text): array
     {
         $path = '/resource/v1/tuling/robot';
         $params = [
-            'text' => (string)$text
+            'text' => $text
         ];
         return $this->client->execute('POST', $path, $params);
     }
@@ -264,11 +235,61 @@ class Ai extends BaseService
      * @param string $text 需要检测的文本（必填）
      * @return array API 返回的 JSON 数组
      */
-    public function aiSensitiveWordFilter($text)
+    public function aiSensitiveWordFilter(string $text): array
     {
         $path = '/resource/v1/car/sensitive/words';
         $params = [
-            'text' => (string)$text
+            'text' => $text
+        ];
+        return $this->client->execute('POST', $path, $params);
+    }
+
+    /**
+     * https://api.istero.com/service/doc/glm-5-2-llm-chat
+     * 智谱AI GLM-5.2 大语言模型对话
+     *
+     * @param string $text 对话内容（必填，约150 tokens）
+     * @return array API 返回的 JSON 数组
+     */
+    public function glm52Chat(string $text): array
+    {
+        $path = '/resource/v1/glm/5_2';
+        $params = [
+            'text' => $text,
+        ];
+        return $this->client->execute('POST', $path, $params);
+    }
+
+    /**
+     * https://api.istero.com/service/doc/deepseek-v4-flash-llm
+     * DeepSeek V4 Flash 大语言模型
+     * @param string $text 对话内容
+     * @return array
+     */
+    public function deepseekV4FlashChat(string $token, string $text): array
+    {
+        $path = '/resource/v1/deepseek/v4/flash';
+
+        $params = [
+            'token' => $token,
+            'text' => $text,
+        ];
+
+        return $this->client->execute('POST', $path, $params);
+    }
+
+    /**
+     * https://api.istero.com/service/doc/deepseek-v4-pro-llm-chat
+     * DeepSeek V4 Pro 大语言模型
+     * @param string $text 对话内容
+     * @return array
+     */
+    public function deepseekV4ProChat(string $token, string $text): array
+    {
+        $path = '/resource/v1/deepseek/v4/pro';
+        $params = [
+            'token' => $token,
+            'text' => $text,
         ];
         return $this->client->execute('POST', $path, $params);
     }

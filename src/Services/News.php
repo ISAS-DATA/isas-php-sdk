@@ -19,7 +19,7 @@ class News extends BaseService
      * CCTV文体娱乐新闻获取
      * @return array API 返回的 JSON 数组
      */
-    public function cctvEnt()
+    public function cctvEnt(): array
     {
         $path = '/resource/v1/cctv/news/ent';
         return $this->client->execute('POST', $path);
@@ -31,7 +31,7 @@ class News extends BaseService
      * CCTV实时最新科技新闻获取
      * @return array API 返回的 JSON 数组
      */
-    public function cctvTech()
+    public function cctvTech(): array
     {
         $path = '/resource/v1/cctv/news/technology';
         return $this->client->execute('POST', $path);
@@ -42,7 +42,7 @@ class News extends BaseService
      * CCTV 最新法治新闻获取
      * @return array API 返回的 JSON 数组
      */
-    public function cctvLegalNews()
+    public function cctvLegalNews(): array
     {
         $path = '/resource/v1/cctv/news/law';
         return $this->client->execute('POST', $path);
@@ -53,7 +53,7 @@ class News extends BaseService
      * CCTV 最新国内新闻获取
      * @return array API 返回的 JSON 数组
      */
-    public function cctvDomesticNews()
+    public function cctvDomesticNews(): array
     {
         $path = '/resource/v1/cctv/china/latest/news';
         return $this->client->execute('POST', $path);
@@ -64,7 +64,7 @@ class News extends BaseService
      * CCTV 实时最新国际新闻获取
      * @return array API 返回的 JSON 数组
      */
-    public function cctvWorldNews()
+    public function cctvWorldNews(): array
     {
         $path = '/resource/v1/cctv/world/latest/news';
         return $this->client->execute('POST', $path);
@@ -75,7 +75,7 @@ class News extends BaseService
      * CCTV 实时最新社会新闻获取
      * @return array API 返回的 JSON 数组
      */
-    public function cctvSocialNews()
+    public function cctvSocialNews(): array
     {
         $path = '/resource/v1/cctv/society/latest/news';
         return $this->client->execute('POST', $path);
@@ -85,7 +85,7 @@ class News extends BaseService
      * 澎湃新闻实时热搜榜单获取
      * @return array API 返回的 JSON 数组
      */
-    public function pengpaiNewsTop()
+    public function pengpaiNewsTop(): array
     {
         $path = '/resource/v1/pengpai/news/top';
         return $this->client->execute('POST', $path);
@@ -97,7 +97,7 @@ class News extends BaseService
      * 夸克新闻热榜获取服务
      * @return array API 返回的 JSON 数组
      */
-    public function quarkNewsTop()
+    public function quarkNewsTop(): array
     {
         $path = '/resource/v1/quark/news/top';
         return $this->client->execute('POST', $path);
@@ -108,7 +108,7 @@ class News extends BaseService
      * 腾讯新闻实时热搜榜单获取
      * @return array API 返回的 JSON 数组
      */
-    public function tencentNewsHotlist()
+    public function tencentNewsHotlist(): array
     {
         $path = '/resource/v1/tencent/news/top';
         return $this->client->execute('POST', $path);
@@ -119,7 +119,7 @@ class News extends BaseService
      * 扬子晚报新闻数据
      * @return array API 返回的 JSON 数组
      */
-    public function yangtseNews()
+    public function yangtseNews(): array
     {
         $path = '/resource/v1/yangzi/news';
         return $this->client->execute('POST', $path);
@@ -130,7 +130,7 @@ class News extends BaseService
      * 新华日报实时新闻数据
      * @return array API 返回的 JSON 数组
      */
-    public function xinhuaDailyRealtime()
+    public function xinhuaDailyRealtime(): array
     {
         $path = '/resource/v1/xinhua/news';
         return $this->client->execute('POST', $path);
@@ -141,7 +141,7 @@ class News extends BaseService
      * 南方日报实时新闻数据
      * @return array API 返回的 JSON 数组
      */
-    public function southernDailyNews()
+    public function southernDailyNews(): array
     {
         $path = '/resource/v1/nanfang/news';
         return $this->client->execute('POST', $path);
@@ -152,7 +152,7 @@ class News extends BaseService
      * 60S读世界 每日精选国内外热点新闻简报与微语
      * @return array API 返回的 JSON 数组
      */
-    public function dailyWorld60s()
+    public function dailyWorld60s(): array
     {
         $path = '/resource/v1/60s/read/world';
         return $this->client->execute('POST', $path);
