@@ -646,11 +646,11 @@ class Tools extends BaseService
      * 工资个税计算服务（2026版）
      * @param float $salary 月薪（必填）
      * @param float $bonus 年终奖
-     * @param float|null $insurance_base 社保基数
+     * @param float $insurance_base 社保基数
      * @param array $deductions 专项附加扣除数组 [children_education, ...]
      * @return array API 返回的 JSON 数组
      */
-    public function taxCalculator2026(float $salary, float $bonus = 0.0, float $insurance_base, array $deductions = []): array
+    public function taxCalculator2026(float $salary, float $bonus, float $insurance_base, array $deductions = []): array
     {
         $path = '/resource/v1/calculate/tax/2026';
 
