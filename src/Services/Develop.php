@@ -406,7 +406,7 @@ class Develop extends BaseService
      * @param int|null $expiry 过期时间，单位秒（可选）
      * @return array API 返回的 JSON 数组
      */
-    public function authCodeEncode(string $string, string $key, int $expiry = null): array
+    public function authCodeEncode(string $string, string $key, ?int $expiry = null): array
     {
         $path = '/resource/v1/auth/code/encode';
         $params = [
@@ -574,7 +574,7 @@ class Develop extends BaseService
      * @param int|null $export 是否导出Excel（可选）
      * @return array API 返回的 JSON 数组
      */
-    public function createUniqueId(int $type = 0, int $length = 8, string $start = '', string $end = '', int $num = 1, string $format = 'json', int $export = null): array
+    public function createUniqueId(int $type = 0, int $length = 8, string $start = '', string $end = '', int $num = 1, string $format = 'json', ?int $export = null): array
     {
         $path = '/resource/v1/id/create';
         $params = [];

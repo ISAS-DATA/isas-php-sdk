@@ -650,7 +650,7 @@ class Tools extends BaseService
      * @param array $deductions 专项附加扣除数组 [children_education, ...]
      * @return array API 返回的 JSON 数组
      */
-    public function taxCalculator2026(float $salary, float $bonus = 0.0, float $insurance_base = null, array $deductions = []): array
+    public function taxCalculator2026(float $salary, float $bonus = 0.0, float $insurance_base, array $deductions = []): array
     {
         $path = '/resource/v1/calculate/tax/2026';
 
@@ -658,10 +658,8 @@ class Tools extends BaseService
             'salary' => $salary,
             'bonus' => $bonus,
         ];
+        $params['insurance_base'] = $insurance_base;
 
-        if ($insurance_base !== null) {
-            $params['insurance_base'] = $insurance_base;
-        }
 
         if (!empty($deductions)) {
             $params = array_merge($params, $deductions);
@@ -1320,13 +1318,10 @@ class Tools extends BaseService
      * @param string $type 输出类型（可选，image：图片输出，json：JSON输出）
      * @return array API 返回的 JSON 数组
      */
-    public function randomMaleAvatars(string $type = null): array
+    public function randomMaleAvatars(string $type): array
     {
         $path = '/resource/v1/boy/rand/avatar';
-        $params = [];
-        if ($type !== null) {
-            $params['type'] = $type;
-        }
+        $params['type'] = $type;
         return $this->client->execute('POST', $path, $params);
     }
 
@@ -1336,13 +1331,10 @@ class Tools extends BaseService
      * @param int $type 头像风格类型（可选，1-7，默认1）
      * @return array API 返回的 JSON 数组
      */
-    public function randomGilrsAvatars(string $type = null): array
+    public function randomGilrsAvatars(string $type): array
     {
         $path = '/resource/v1/girl/avatar/get';
-        $params = [];
-        if ($type !== null) {
-            $params['type'] = $type;
-        }
+        $params['type'] = $type;
         return $this->client->execute('POST', $path, $params);
     }
 
@@ -1418,15 +1410,13 @@ class Tools extends BaseService
      * @param string $type 输出类型，image：图片输出，json：返回base64（可选）
      * @return array API 返回的 JSON 数组
      */
-    public function qrcodeGenerator(string $text, string $type = null): array
+    public function qrcodeGenerator(string $text, string $type): array
     {
         $path = '/resource/v1/qrcode/create';
         $params = [
             'text' => $text
         ];
-        if ($type !== null) {
-            $params['type'] = $type;
-        }
+        $params['type'] = $type;
         return $this->client->execute('POST', $path, $params);
     }
 
@@ -1731,13 +1721,10 @@ class Tools extends BaseService
      * @param string|null $gender 性别（男/女，可选）
      * @return array API 返回的 JSON 数组
      */
-    public function randomProfile(string $gender = null): array
+    public function randomProfile(string $gender): array
     {
         $path = '/resource/v1/persona/rand';
-        $params = [];
-        if ($gender !== null) {
-            $params['gender'] = $gender;
-        }
+        $params['gender'] = $gender;
         return $this->client->execute('POST', $path, $params);
     }
 
@@ -1782,16 +1769,14 @@ class Tools extends BaseService
      * @param string|null $description 描述内容（小于200字，可选）
      * @return array API 返回的 JSON 数组
      */
-    public function socialShareApi(string $title, string $url, string $description = null): array
+    public function socialShareApi(string $title, string $url, string $description): array
     {
         $path = '/resource/v1/social/share';
         $params = [
             'title' => $title,
             'url' => $url
         ];
-        if ($description !== null) {
-            $params['description'] = $description;
-        }
+        $params['description'] = $description;
         return $this->client->execute('POST', $path, $params);
     }
 
@@ -2165,22 +2150,22 @@ class Tools extends BaseService
      * @return array API 返回的 JSON 数组
      */
     public function universitiesPro(
-        string $name = null,
-        string $page = null,
-        string $location = null,
-        string $nature = null,
-        string $type = null,
-        int    $is_985 = null,
-        int    $is_211 = null,
-        int    $is_top = null,
-        int    $is_top_subject = null,
-        int    $is_independent_institutions = null,
-        int    $is_higher = null,
-        int    $is_civilian_run = null,
-        int    $is_accept_vocational = null,
-        int    $is_accept_dr = null,
-        int    $is_accept_master = null,
-        int    $is_accept_undergraduate = null
+        string $name,
+        string $page,
+        string $location,
+        string $nature,
+        string $type,
+        int    $is_985,
+        int    $is_211,
+        int    $is_top,
+        int    $is_top_subject,
+        int    $is_independent_institutions,
+        int    $is_higher,
+        int    $is_civilian_run,
+        int    $is_accept_vocational,
+        int    $is_accept_dr,
+        int    $is_accept_master,
+        int    $is_accept_undergraduate
     ): array
     {
         $path = '/resource/v1/school/query/plus';

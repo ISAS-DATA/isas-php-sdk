@@ -190,11 +190,11 @@ class Web extends BaseService
      * @param string|null $keyword 后缀关键字（可选，如com）
      * @return array API 返回的 JSON 数组
      */
-    public function domainSuffixes(string $keyword = null): array
+    public function domainSuffixes(string $keyword = ""): array
     {
         $path = '/resource/v1/get/domain/can_reg/list';
         $params = [];
-        if ($keyword !== null) {
+        if ($keyword) {
             $params['keyword'] = $keyword;
         }
         return $this->client->execute('POST', $path, $params);
