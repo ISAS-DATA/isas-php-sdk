@@ -158,5 +158,17 @@ class News extends BaseService
         return $this->client->execute('POST', $path);
     }
 
+    /**
+     * https://api.istero.com/service/doc/tieba-hot-topics
+     * 百度贴吧热议话题获取
+     *
+     * @return array API 返回的 JSON 数组
+     */
+    public function tiebaHotTopics(): array
+    {
+        $path = '/resource/v1/tieba/topic/hot';
+        return $this->client->execute('POST', $path);
+    }
+
 
 }

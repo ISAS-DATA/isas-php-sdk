@@ -2512,4 +2512,41 @@ class Tools extends BaseService
         return $this->client->execute('POST', $path, $params);
     }
 
+    /**
+     * https://api.istero.com/service/doc/steam-player-stats
+     * Steam 在线玩家人数获取
+     *
+     * @return array API 返回的 JSON 数组
+     */
+    public function steamPlayerStats(): array
+    {
+        $path = '/resource/v1/steam/online/data';
+        return $this->client->execute('POST', $path);
+    }
+
+
+    /**
+     * https://api.istero.com/service/doc/steam-free-game
+     * IT之家喜加一免费游戏获取
+     *
+     * @return array API 返回的 JSON 数组
+     */
+    public function steamFreeGame(): array
+    {
+        $path = '/resource/v1/ithome/steam/free/games';
+        return $this->client->execute('POST', $path);
+    }
+
+    /**
+     * https://api.istero.com/service/doc/netease-news-hotsearch-list
+     * 网易新闻实时热搜榜单获取
+     *
+     * @return array API 返回的 JSON 数组
+     */
+    public function neteaseNewsHotSearch(): array
+    {
+        $path = '/resource/v1/news/163/hot';
+        return $this->client->execute('POST', $path);
+    }
+
 }

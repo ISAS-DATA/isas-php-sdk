@@ -832,23 +832,46 @@ class Develop extends BaseService
     /**
      * https://api.istero.com/service/doc/packagist-package-search
      * Packagist软件包搜索（官方版）
+     * @param string $keyword 关键字
      * @return array API 返回的 JSON 数组
      */
-    public function packagistSearch(): array
+    public function packagistSearch(string $keyword): array
     {
+        $params = [
+            "keyword" => $keyword
+        ];
         $path = '/resource/v1/packagist/search';
-        return $this->client->execute('POST', $path);
+        return $this->client->execute('POST', $path, $params);
     }
 
     /**
      * https://api.istero.com/service/doc/isas-packagist-search
      * Packagist软件包搜索（镜像版）
+     * @param string $keyword 关键字
      * @return array API 返回的 JSON 数组
      */
-    public function IsasPackagistSearch(): array
+    public function IsasPackagistSearch(string $keyword): array
     {
+        $params = [
+            "keyword" => $keyword
+        ];
         $path = '/resource/v1/packagist/isas/search';
-        return $this->client->execute('POST', $path);
+        return $this->client->execute('POST', $path, $params);
+    }
+
+    /**
+     * https://api.istero.com/service/doc/linux-command-query-v2
+     * Linux代码指令查询V2
+     * @param string $code 指令关键字
+     * @return array API 返回的 JSON 数组
+     */
+    public function linuxCommandQueryV2(string $code): array
+    {
+        $params = [
+            "code" => $code
+        ];
+        $path = '/resource/v2/linux/code/query';
+        return $this->client->execute('POST', $path, $params);
     }
 }
 
